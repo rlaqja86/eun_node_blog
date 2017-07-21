@@ -29,13 +29,10 @@ app.locals.pretty = true;
 app.use('/', index);
 app.use('/users', users);
 app.use('/main', main);
-<<<<<<< HEAD
 
-=======
 app.use('/board', board);
-app.use('.gallery',gallery);
-  
->>>>>>> d80f578d190ffc582ebb472480eed9a00ccaf037
+app.use('.gallery', gallery);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
