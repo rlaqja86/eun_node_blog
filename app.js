@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var main = require('./routes/main');
+var board = require('./routes/board');
+var gallery = require('./routes/gallery')
 
 var app = express();
 
@@ -27,7 +29,13 @@ app.locals.pretty = true;
 app.use('/', index);
 app.use('/users', users);
 app.use('/main', main);
+<<<<<<< HEAD
 
+=======
+app.use('/board', board);
+app.use('.gallery',gallery);
+  
+>>>>>>> d80f578d190ffc582ebb472480eed9a00ccaf037
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
