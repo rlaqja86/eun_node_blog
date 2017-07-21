@@ -31,7 +31,7 @@ app.use('/users', users);
 app.use('/main', main);
 
 app.use('/board', board);
-app.use('.gallery', gallery);
+app.use('/gallery', gallery);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
