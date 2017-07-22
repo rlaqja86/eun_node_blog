@@ -3,7 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/new', function(req, res) {
-    fs.readdir('data', function(err, fileList) {
+    fs.readdir('./data', function(err, fileList) {
         if (err) {
             console.log(err);
             res.status(500).send('dir read error');
@@ -13,7 +13,7 @@ router.get('/new', function(req, res) {
 });
 
 router.get(['/', '/:fileName'], function(req, res) {
-    fs.readdir('data', function(err, fileList) {
+    fs.readdir('./data', function(err, fileList) {
         if (err) {
             console.log(err);
             res.status(500).send('dir read error');
@@ -21,7 +21,7 @@ router.get(['/', '/:fileName'], function(req, res) {
         var fileName = req.params.fileName;
         if (fileName) {
             //파일이름을 받았을 때
-            fs.readFile('data/' + fileName, 'utf8', function(err, fileContent) {
+            fs.readFile('./data/' + fileName, 'utf8', function(err, fileContent) {
                 if (err) {
                     console.log(err);
                     res.status(500).send('file read error');
@@ -38,7 +38,7 @@ router.get(['/', '/:fileName'], function(req, res) {
 router.post('/', function(req, res) {
     var fileName = req.body.fileName;
     var fileContent = req.body.fileContent;
-    fs.writeFile('data/' + fileName, fileContent, function(err) {
+    fs.writeFile('./data/' + fileName, fileContent, function(err) {
         if (err) {
             console.log('error');
             res.status(500).send('file write error');
