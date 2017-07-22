@@ -9,7 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var main = require('./routes/main');
 var board = require('./routes/board');
-var gallery = require('./routes/gallery')
+var gallery = require('./routes/gallery');
 
 var app = express();
 
@@ -36,6 +36,7 @@ app.use('/gallery', gallery);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
+    res.render('notFound');
     err.status = 404;
     next(err);
 });
