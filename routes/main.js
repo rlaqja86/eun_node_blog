@@ -43,8 +43,9 @@ router.post('/', function(req, res) {
         if (err) {
             console.log('error');
             res.status(500).send('file write error');
+        } else {
+            res.redirect('/main/' + fileName);
         }
-        res.redirect('/main/' + fileName);
     });
 });
 
