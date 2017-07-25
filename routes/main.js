@@ -39,7 +39,7 @@ router.get(['/', '/:fileName'], function(req, res) {
 router.post('/', function(req, res) {
     var fileName = req.body.fileName;
     var fileContent = req.body.fileContent;
-    fs.writeFile('../data/' + fileName, fileContent, function(err) {
+    fs.writeFile('/data/' + fileName, fileContent, function(err) {
         if (err) {
             console.log('error');
             res.status(500).send('file write error');
