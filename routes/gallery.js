@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
         db.collection("category").find(query).toArray(function(err, result) {
             if (err) throw err;   
             console.log(result);
-            res.render('gallery', { title: result });   
+            res.render('gallery', { title: result[0].categoryName });   
             db.close(); 
         });
     });
