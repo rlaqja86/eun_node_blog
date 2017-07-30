@@ -18,10 +18,18 @@ html
       each fileName in fileList
         li
           a(href='/main/'+fileName)= fileName
-    p
-      h3 Name
-      div= fileName
-    p
-      h3 Content
-      div= fileContent
-    a(href="/main/new") 메뉴등록
+    div(class='content')
+      div
+        h3 Name
+        div= fileName
+      div
+        h3 Content
+        div= fileContent
+
+    div(class='button')
+      a(href="/main/new") 메뉴등록
+
+    div(class='gallery')
+      div(class='wrap')
+        -for(var i=0; i<20; i++)
+          img(src="http://45.76.55.231:3000/image/thumbnail.jpg")
