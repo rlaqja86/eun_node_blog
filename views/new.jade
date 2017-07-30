@@ -18,11 +18,13 @@ html
       each fileName in fileList
         li
           a(href='/main/'+fileName)= fileName
-    form(action='/main' method='post')
-        p
-            input(type='text' name='fileName' placeholder='name')
-        p
-            textarea(name='fileContent' placeholder='content')
-        p
-            input(type='submit' value="등록")
-    a(href="/main") 뒤로가기
+    div(class='content')  
+      form(action='/main' method='post')
+          p
+              input(class='textBox' type='text' name='fileName' placeholder='name')
+          p
+              input(class='textBox' type='text' name='fileContent' placeholder='content')
+          p
+              input(type='submit' value="등록")
+    div(class='button')
+      a(href="/main") 뒤로가기
