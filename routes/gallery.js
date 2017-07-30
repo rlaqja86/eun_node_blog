@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
         var query = { categoryName: "메인메뉴" }
         db.collection("category").find(query).toArray(function(err, result) {
             if (err) throw err;   
-            console.log(result);
-            res.render('gallery', { title: result });   
+            console.log(result[0].categoryName);
+            res.render('gallery', { title: result[0].categoryName });   
             db.close(); 
         });
     });
 });
 
-        module.exports = router;
+module.exports = router;
