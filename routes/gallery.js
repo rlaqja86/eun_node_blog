@@ -3,7 +3,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
     var http = require('http');
     var MongoClient = require('mongodb').MongoClient;
     var url = "mongodb://localhost:27017/local";
@@ -18,9 +17,8 @@ router.get('/', function(req, res, next) {
             db.close(); 
         });
     });
-=======
+
     res.render('gallery', { title: 'this is gallery' });
->>>>>>> develop
 });
 
 module.exports = router;
