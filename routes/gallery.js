@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
             db.close(); 
         });
     });
-
     res.render('gallery', { title: 'this is gallery' });
 });
 
