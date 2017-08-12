@@ -11,6 +11,7 @@ var main = require('./routes/main');
 var board = require('./routes/board');
 var gallery = require('./routes/gallery');
 var categoryBuilder = require('./routes/categoryBuilder');
+var admin = require('./routes/categoryBuilder')
 
 var app = express();
 
