@@ -11,6 +11,7 @@ router.post('/save', function(req, res, next) {
         if (err) throw err;
         var categoryName = req.param('name');
         db.collection("category").save(createCategory(categoryName));
+        res.redirect('/categoryBuilder');
     });
 });
 
