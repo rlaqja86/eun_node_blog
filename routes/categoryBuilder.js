@@ -7,19 +7,34 @@ var http = require('http');
 
 const CATEGORY_COLLECTION_NAME = "category"
 
+var multer = require('multer');
+var _storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, './uploads/')
+    },
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + '-' + file.originalname)
+    }
+});
+
+var upload = multer({ storage: _storage });
+var bodyParser = require('body-parser');
+var fs = require('fs');
+
 /* save category. */
-router.post('/save', function(req, res, next) {
+router.post('/save', upload.single('image'), function(req, res, next) {
     try {
+        console.log(__dirname);
         MongoClient.connect(url, function(err, db) {
+            var fileName = req.file.filename;
             var categoryName = req.param('name');
             db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(categoryName));
             res.redirect('/categoryBuilder');
         });
         db.close();
-    } catch (excpetion) {
-        console.log(exception);
+    } catch (ex) {
+        console.log(ex);
     }
-
 });
 
 /* get admin main page */
