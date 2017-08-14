@@ -3,13 +3,14 @@ var router = express.Router();
 var queryString = require('querystring')
 var url = "mongodb://localhost:27017/local";
 var http = require('http');
+var path = require('path');
 
 const CATEGORY_COLLECTION_NAME = "category"
 
 var multer = require('multer');
 var _storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        callback(null, './uploads/')
+        callback(null, path.join(__dirname, '../uploads/'))
     },
     filename: function(req, file, callback) {
         callback(null, Date.now() + '-' + file.originalname)
