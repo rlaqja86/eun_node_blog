@@ -1,35 +1,34 @@
-var express = require('express');
-var router = express.Router();
-var queryString = require('querystring')
-var url = "mongodb://localhost:27017/local";
-var http = require('http');
-var path = require('path');
+var express = require('express'),
+    router = express.Router(),
+    queryString = require('querystring'),
+    url = "mongodb://localhost:27017/local",
+    http = require('http'),
+    path = require('path'),
+    multer = require('multer'),
+    ObjectID = require('mongodb').ObjectID,
+    MongoClient = require('mongodb').MongoClient;
 
-var CATEGORY_COLLECTION_NAME = "category";
+    CATEGORY_COLLECTION_NAME = "category",
+    NUMBER_COUNT_COLLECTION_NAME = "numberCount";
 
-var multer = require('multer');
-var _storage = multer.diskStorage({
-    destination: function(req, file, callback) {
-        callback(null, path.join(__dirname, '../uploads/'))
-    },
-    filename: function(req, file, callback) {
-        callback(null, Date.now() + '-' + file.originalname)
-    }
-});
-
-var upload = multer({ storage: _storage });
-var bodyParser = require('body-parser');
-var fs = require('fs');
+    _storage = multer.diskStorage({
+       destination: function(req, file, callback) {
+            callback(null, path.join(__dirname, '../uploads/'))
+        },
+        filename: function(req, file, callback) {
+            callback(null, Date.now() + '-' + file.originalname)
+        }}),
+    upload = multer({ storage: _storage }),
+    bodyParser = require('body-parser'),
+    fs = require('fs');
 
 /* save category. */
-
 router.post('/save', upload.single('image'), function(req, res, next) {
     try {
-        var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect(url, function(err, db) {
             var fileName = req.file.filename;
             var categoryName = req.param('categoryName');
-            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(db, categoryName));
+            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(db, categoryName, fileName));
             res.redirect('/categoryBuilder');
         });
     } catch (ex) {
@@ -40,31 +39,24 @@ router.post('/save', upload.single('image'), function(req, res, next) {
 /* get admin main page */
 router.get('/', function(req, res, next) {
     try {
-        var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect(url, function(err, db) {
-            db.collection("category").find().toArray(function(err, result) {
+            db.collection(CATEGORY_COLLECTION_NAME).find().toArray(function(err, result) {
                 res.status(200).render('admin', { categories: result });  
                 db.close(); 
             });
         });
-    } catch (exception) {
-        console.log(exception);
+    } catch (ex) {
+        console.log(ex);
     }
 });
 
-function createCategory(db, categoryName) {
+function createCategory(db, categoryName, imageFileName) {
     var category = require('../bin/domain/Category');
-    category._id = getCurrentIndexNumber(db);
+    category._id = new ObjectID();
     category.name = categoryName;
+    category.imageFileName = imageFileName;
+
     return category;
 }
-
-function getCurrentIndexNumber(db) {
-  db.collection("numberCount").findAndModify( 
-      { query:{_id:'userid'}, update: {$inc:{seq:1}}, new: true },
-        function(error, data) { 
-           return data;  
-    }
-  )}
 
 module.exports = router;
