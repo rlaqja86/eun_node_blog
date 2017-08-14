@@ -21,35 +21,10 @@ router.get('/upload', function(req, res) {
 router.post('/upload', upload.single('userfile'), function(req, res) {
     console.log(req.file);
 
-    // 이미지를 DB에 저장
-    var http = require('http');
-    var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:27017/local";
     var fileName = req.file.filename;
-
-    MongoClient.connect(url, function(err, db) { 
-        if (err) throw err; 
-        var query = { categoryName: "메인메뉴" }
-        db.collection("category").find(query).toArray(function(err, result) {
-            if (err) throw err;   
-            console.log(result[0].categoryName);
-            res.render('gallery', { title: result[0].categoryName });   
-            db.close(); 
-        });
-    });
-
-
 
     res.redirect('/main');
 });
-
-
-
-
-
-
-
-
 
 router.get('/new', function(req, res) {
     fs.readdir('../data', function(err, fileList) {
