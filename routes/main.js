@@ -32,7 +32,7 @@ router.post('/upload', upload.fields([{ name: 'userfile1' }, { name: 'userfile2'
 });
 
 router.get('/new', function(req, res) {
-    fs.readdir('../data', function(err, fileList) {
+    fs.readdir(path.join(__dirname, '../data/'), function(err, fileList) {
         if (err) {
             console.log(err);
             res.status(500).send('dir read error');
@@ -43,7 +43,7 @@ router.get('/new', function(req, res) {
 });
 
 router.get(['/', '/:fileName'], function(req, res) {
-    fs.readdir('../data', function(err, fileList) {
+    fs.readdir(path.join(__dirname, '../data/'), function(err, fileList) {
         if (err) {
             console.log(err);
             res.status(500).send('dir read error');
