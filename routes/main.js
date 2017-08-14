@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 var multer = require('multer');
 // var upload = multer({ dest: '../uploads/' });
 var _storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, '../uploads/')
+        cb(null, path.join(__dirname, '../uploads/'))
+
     },
     filename: function(req, file, cb) {
         //cb(null, file.originalname + '-' + Date.now())
@@ -20,10 +22,12 @@ router.get('/upload', function(req, res) {
 });
 router.post('/upload', upload.single('userfile'), function(req, res) {
     console.log(req.file);
+    console.log(__dirname);
 
     var fileName = req.file.filename;
 
-    res.redirect('/main');
+
+    res.redirect('/main/upload');
 });
 
 router.get('/new', function(req, res) {

@@ -5,10 +5,24 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/local";
 var http = require('http');
 
+var multer = require('multer');
+var _storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, '../uploads/')
+    },
+    filename: function(req, file, cb) {
+        //cb(null, file.originalname + '-' + Date.now())
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+var upload = multer({ storage: _storage });
+var bodyParser = require('body-parser');
+
+
 const CATEGORY_COLLECTION_NAME = "category"
 
 /* save category. */
-router.post('/save', function(req, res, next) {
+router.post('/save', upload.single('userfile'), function(req, res, next) {
     try {
         MongoClient.connect(url, function(err, db) {
             var categoryName = req.param('name');
