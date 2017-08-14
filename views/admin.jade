@@ -12,10 +12,15 @@ html
   div
     form(id='uploadForm' method='POST' action='/categoryBuilder/save' enctype="multipart/form-data")
       div.form-group
-        label(for='name') Name:
-            input#name.form-control(type='text', placeholder='카테고리명' name='categoryName')
-        label(for='name') Name:
-            input#name.form-control(type='file', placeholder='이미지' name='image')
+        p
+          label(for='name') Name:
+              input#name.form-control(type='text', placeholder='카테고리명' name='categoryName')
+        p
+          label(for='thumbnailImage') Thumbnail Image:
+              input#thumbnailImage.form-control(type='file', placeholder='썸네일 이미지' name='thumbnailImage')
+        p
+          label(for='image') Image:
+              input#image.form-control(type='file', placeholder='원본 이미지' name='image')
         button.btn.btn-primary(type='submit') 카테고리생성
 
 

@@ -20,11 +20,12 @@ var fs = require('fs');
 router.get('/upload', function(req, res) {
     res.render('upload');
 });
-router.post('/upload', upload.single('userfile'), function(req, res) {
-    console.log(req.file);
-    console.log(__dirname);
+router.post('/upload', upload.fields([{ name: 'userfile1' }, { name: 'userfile2' }]), function(req, res) {
+    console.log(req.files);
+    console.log(req.files.userfile1[0].filename);
+    console.log(req.files.userfile2[0].filename);
 
-    var fileName = req.file.filename;
+    //var fileName = req.file.filename;
 
 
     res.redirect('/main/upload');

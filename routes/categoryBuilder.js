@@ -23,11 +23,12 @@ var fs = require('fs');
 
 /* save category. */
 
-router.post('/save', upload.single('image'), function(req, res, next) {
+router.post('/save', upload.fields([{ name: 'thumbnailImage' }, { name: 'image' }]), function(req, res, next) {
     try {
         var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect(url, function(err, db) {
-            var fileName = req.file.filename;
+            var thumbnailImageName = req.files.thumbnailImage[0].filename;
+            var imageName = req.files.image[0].filename;
             var categoryName = req.param('categoryName');
             db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(db, categoryName));
             res.redirect('/categoryBuilder');
