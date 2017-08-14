@@ -1,7 +1,8 @@
 var category = function() {
     var _id;
     var categoryName;
-    var depth;
-    var childCategories;
+    var imageUrl;
+    var thumbnailUrl;
+    var linkUrl;
 }
 module.exports = new category();
