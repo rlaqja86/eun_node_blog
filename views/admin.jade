@@ -10,10 +10,12 @@ html
     each category in categories 
         li #{category.name}
   div
-    form(method='POST' action='/categoryBuilder/save')
+    form(id='uploadForm' method='POST' action='/categoryBuilder/save' enctype="multipart/form-data")
       div.form-group
         label(for='name') Name:
-            input#name.form-control(type='text', placeholder='카테고리명' name='name')
+            input#name.form-control(type='text', placeholder='카테고리명' name='categoryName')
+        label(for='name') Name:
+            input#name.form-control(type='file', placeholder='이미지' name='image')
         button.btn.btn-primary(type='submit') 카테고리생성
 
 
