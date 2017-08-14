@@ -7,9 +7,10 @@ var express = require('express'),
     multer = require('multer'),
     ObjectID = require('mongodb').ObjectID,
     MongoClient = require('mongodb').MongoClient,
+
     CATEGORY_COLLECTION_NAME = "category",
     NUMBER_COUNT_COLLECTION_NAME = "numberCount",
-    FIRST_INDEX = 0;
+    FIRST_INDEX = 0,
 
 _storage = multer.diskStorage({
         destination: function(req, file, callback) {
