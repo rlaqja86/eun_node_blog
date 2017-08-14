@@ -1,44 +1,46 @@
 var express = require('express');
 var router = express.Router();
 var queryString = require('querystring')
-var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/local";
 var http = require('http');
+var path = require('path');
+
+var CATEGORY_COLLECTION_NAME = "category";
 
 var multer = require('multer');
 var _storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, '../uploads/')
+    destination: function(req, file, callback) {
+        callback(null, path.join(__dirname, '../uploads/'))
     },
-    filename: function(req, file, cb) {
-        //cb(null, file.originalname + '-' + Date.now())
-        cb(null, Date.now() + '-' + file.originalname)
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + '-' + file.originalname)
     }
-})
+});
+
 var upload = multer({ storage: _storage });
 var bodyParser = require('body-parser');
-
-
-const CATEGORY_COLLECTION_NAME = "category"
+var fs = require('fs');
 
 /* save category. */
-router.post('/save', upload.single('userfile'), function(req, res, next) {
+
+router.post('/save', upload.single('image'), function(req, res, next) {
     try {
+        var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect(url, function(err, db) {
-            var categoryName = req.param('name');
-            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(categoryName));
+            var fileName = req.file.filename;
+            var categoryName = req.param('categoryName');
+            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(db, categoryName));
             res.redirect('/categoryBuilder');
         });
-        db.close();
-    } catch (excpetion) {
-        console.log(exception);
+    } catch (ex) {
+        console.log(ex);
     }
-
 });
 
 /* get admin main page */
 router.get('/', function(req, res, next) {
     try {
+        var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect(url, function(err, db) {
             db.collection("category").find().toArray(function(err, result) {
                 res.status(200).render('admin', { categories: result });  
@@ -50,10 +52,19 @@ router.get('/', function(req, res, next) {
     }
 });
 
-function createCategory(categoryName) {
+function createCategory(db, categoryName) {
     var category = require('../bin/domain/Category');
+    category._id = getCurrentIndexNumber(db);
     category.name = categoryName;
     return category;
+}
+
+function getCurrentIndexNumber(db) {
+    db.collection("numberCount").findAndModify({ query: { _id: 'userid' }, update: { $inc: { seq: 1 } }, new: true },
+        function(error, data) {
+            return data;
+        }
+    )
 }
 
 module.exports = router;
