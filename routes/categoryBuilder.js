@@ -5,7 +5,7 @@ var url = "mongodb://localhost:27017/local";
 var http = require('http');
 var path = require('path');
 
-const CATEGORY_COLLECTION_NAME = "category"
+var CATEGORY_COLLECTION_NAME = "category";
 
 var multer = require('multer');
 var _storage = multer.diskStorage({
@@ -25,14 +25,13 @@ var fs = require('fs');
 
 router.post('/save', upload.single('image'), function(req, res, next) {
     try {
-        console.log(__dirname);
+        var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect(url, function(err, db) {
             var fileName = req.file.filename;
-            var categoryName = req.param('name');
-            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(categoryName));
+            var categoryName = req.param('categoryName');
+            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(db, categoryName));
             res.redirect('/categoryBuilder');
         });
-        db.close();
     } catch (ex) {
         console.log(ex);
     }
@@ -61,7 +60,7 @@ function createCategory(db, categoryName) {
 }
 
 function getCurrentIndexNumber(db) {
-  db.collection('numberCount').findAndModify( 
+  db.collection("numberCount").findAndModify( 
       { query:{_id:'userid'}, update: {$inc:{seq:1}}, new: true },
         function(error, data) { 
            return data;  
