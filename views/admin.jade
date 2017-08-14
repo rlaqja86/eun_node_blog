@@ -5,15 +5,20 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
     title 관리자 페이지
   body
-    div
-    each #{categories} in category
-  p
-    category.name
+  p hey this is just start;
+  div
+    each category in categories 
+        li #{category.name}
+  div
+    form(method='POST' action='/categoryBuilder/save')
+      div.form-group
+        label(for='name') Name:
+            input#name.form-control(type='text', placeholder='카테고리명' name='name')
+        button.btn.btn-primary(type='submit') 카테고리생성
 
-    div(class='button')
-      a(href="/main/new") 메뉴등록
 
-    div(class='gallery')
-      div(class='wrap')
-        -for(var i=0; i<20; i++)
-          img(src="http://45.76.55.231:3000/image/thumbnail.jpg")
+
+
+
+          
+
