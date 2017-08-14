@@ -1,5 +1,5 @@
 var category = function() {
-    var categoryId;
+    var _id;
     var categoryName;
     var depth;
     var childCategories;
