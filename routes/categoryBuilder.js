@@ -14,8 +14,8 @@ router.post('/save', function(req, res, next) {
         var categoryName = req.param('name');        
         db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(categoryName));
          res.redirect('/categoryBuilder');
-        });
         db.close();
+        });
     } catch(excpetion) {
         console.log(exception);
     }
