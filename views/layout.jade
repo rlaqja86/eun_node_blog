@@ -1,8 +1,29 @@
 doctype html
 html
   head
-    meta(charset='utf-8')
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 minimum-scale=1.0")
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://use.fontawesome.com/2e9e0ef954.js")
+    script(src="http://code.jquery.com/jquery-1.10.2.min.js")
+    script(src="/plugin/fotorama-4.6.4/fotorama.js")
+    link(rel="stylesheet" href="/plugin/fotorama-4.6.4/fotorama.css")
+    link(rel="stylesheet" href="/stylesheets/style_test.css")
+
   body
-    block content
+    div(id="bodyWrap")
+      header
+        a(class="title" href="/") 
+          h1 Hellomate
+        a(class="link" href="/hi") 안녕출판사
+        a(class="link" href="/about") about
+      block content
+      footer
+        div(id="snsLink")
+          p(align="center")
+            a(href="https://www.facebook.com/" id="facebook" target="_blank" title="페이스북")
+              i(class="fa fa-facebook-official fa-2x" aria-hidden="true")
+            a(href="https://www.youtube.com/" id="youtube" target="_blank" title="유튜브")
+              i(class="fa fa-youtube fa-2x" aria-hidden="true")
+            a(href="https://www.instagram.com" id="instagram" target="_blank" title="인스타그램")
+              i(class="fa fa-instagram fa-2x" aria-hidden="true")

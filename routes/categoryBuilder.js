@@ -12,7 +12,7 @@ var express = require('express'),
     NUMBER_COUNT_COLLECTION_NAME = "numberCount",
     FIRST_INDEX = 0,
 
-_storage = multer.diskStorage({
+    _storage = multer.diskStorage({
         destination: function(req, file, callback) {
             callback(null, path.join(__dirname, '../uploads/'))
         },
