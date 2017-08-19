@@ -3,9 +3,9 @@ block content
   div(id="main")
     div
       a(href="/project") 가장 최근 프로젝트 이미지
-    img(src="/upload/#{object[0].mainImage}", alt="main image")
+    img(src="/uploads/#{object[0].mainImage}", alt="main image")
   div(id="projects")
     each item in object
       div
         div= item.name
-        img(src="/upload/#{item.thumbnailImage}", alt="thumbnail image")
+        img(src="/uploads/#{item.thumbnailImage}", alt="thumbnail image")

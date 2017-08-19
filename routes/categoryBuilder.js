@@ -14,7 +14,7 @@ var express = require('express'),
 
     _storage = multer.diskStorage({
         destination: function(req, file, callback) {
-            callback(null, path.join(__dirname, '../uploads/'))
+            callback(null, path.join(__dirname, '../public/uploads/'))
         },
         filename: function(req, file, callback) {
             callback(null, Date.now() + '-' + file.originalname)

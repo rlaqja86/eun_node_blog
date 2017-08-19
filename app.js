@@ -6,10 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var main = require('./routes/main');
-var board = require('./routes/board');
-var gallery = require('./routes/gallery');
 var categoryBuilder = require('./routes/categoryBuilder');
 var admin = require('./routes/categoryBuilder')
 
@@ -26,15 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.locals.pretty = true;
 
 app.use('/', index);
-app.use('/users', users);
 app.use('/main', main);;
-
-app.use('/board', board);
-app.use('/gallery', gallery);
 app.use('/categoryBuilder', categoryBuilder);
 
 // catch 404 and forward to error handler

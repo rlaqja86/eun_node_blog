@@ -38,6 +38,25 @@ var sampleObject = [{
                 "image": "thumbnail.jpg"
             }
         ]
+    },
+    {
+        "name": "프로젝트3",
+        "date": "2017-12-09",
+        "site": "서울시 서대문구",
+        "description": "프로젝트설명3",
+        "mainImage": "thumbnail.jpg",
+        "thumbnailImage": "thumbnail.jpg",
+        "images": [{
+                "name": "작품명1",
+                "description": "작품설명1",
+                "image": "thumbnail.jpg"
+            },
+            {
+                "name": "작품명2",
+                "description": "작품설명2",
+                "image": "thumbnail.jpg"
+            }
+        ]
     }
 ]
 
