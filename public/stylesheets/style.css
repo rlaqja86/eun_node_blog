@@ -23,7 +23,7 @@ a:hover {
 }
 
 body {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     text-align: center;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -31,7 +31,10 @@ body {
 
 #bodyWrap {
     width: 1080px;
+    margin-left: 10px;
+    margin-right: 10px;
     display: inline-block;
+    text-align: left;
 }
 
 header {
@@ -58,11 +61,11 @@ header {
     float: left;
     clear: both;
     width: 77%;
-    height: 550px;
+    height: 468px;
     position: relative;
 }
 
-#main>div {
+#main>a>div {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -98,7 +101,7 @@ header {
 #projects {
     float: right;
     width: 23%;
-    height: 550px;
+    height: 468px;
     overflow-y: auto;
 }
 
@@ -106,17 +109,14 @@ header {
     float: left;
     position: relative;
     width: 49%;
-    height: 13%;
+    height: 69px;
     padding: 10px;
     margin-left: 1%;
     margin-bottom: 1%;
-    color: white;
-    /* background-image: url("https://cdn.pixabay.com/photo/2016/10/25/14/03/the-clouds-1768967_960_720.jpg");
-    background-position: center -180px; */
 }
 
-#projects>div>div,
-#projects>div>img {
+#projects>div>a>div,
+#projects>div>a>img {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -124,8 +124,10 @@ header {
     left: 0;
 }
 
-#projects>div>div {
+#projects>div>a>div {
+    color: white;
     z-index: 1000;
+    height: 50%;
 }
 
 footer {

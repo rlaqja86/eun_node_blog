@@ -25,8 +25,8 @@ var sampleObject = [{
         "date": "2017-10-09",
         "site": "서울시 서대문구",
         "description": "프로젝트설명2",
-        "mainImage": "thumbnail.jpg",
-        "thumbnailImage": "thumbnail.jpg",
+        "mainImage": "image1.jpg",
+        "thumbnailImage": "image1.jpg",
         "images": [{
                 "name": "작품명1",
                 "description": "작품설명1",
@@ -44,8 +44,27 @@ var sampleObject = [{
         "date": "2017-12-09",
         "site": "서울시 서대문구",
         "description": "프로젝트설명3",
-        "mainImage": "thumbnail.jpg",
-        "thumbnailImage": "thumbnail.jpg",
+        "mainImage": "image2.jpg",
+        "thumbnailImage": "image2.jpg",
+        "images": [{
+                "name": "작품명1",
+                "description": "작품설명1",
+                "image": "thumbnail.jpg"
+            },
+            {
+                "name": "작품명2",
+                "description": "작품설명2",
+                "image": "thumbnail.jpg"
+            }
+        ]
+    },
+    {
+        "name": "프로젝트4",
+        "date": "2017-12-09",
+        "site": "서울시 서대문구",
+        "description": "프로젝트설명4",
+        "mainImage": "image3.jpg",
+        "thumbnailImage": "image3.jpg",
         "images": [{
                 "name": "작품명1",
                 "description": "작품설명1",
@@ -58,11 +77,13 @@ var sampleObject = [{
             }
         ]
     }
-]
+];
 
-/* GET home page. */
+// 데이터베이스 조회 후 가장 최근 등록순으로 정렬된 배열오브젝트를 받는다.
+// 조회할 개수는 한페이지에 표시할 프로젝트수로 정한다.
+// index.jade에 object로 넘긴다.
 router.get('/', function(req, res, next) {
     res.render('index', { title: "eunhye", object: sampleObject });
 });
-//this is test
+
 module.exports = router;

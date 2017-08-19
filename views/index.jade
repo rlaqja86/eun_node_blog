@@ -1,11 +1,12 @@
-extends layout
+extends _layout
 block content
   div(id="main")
-    div
-      a(href="/project") 가장 최근 프로젝트 이미지
+    a(href="/project/#{object[0].name}")
+      div #{object[0].description}
     img(src="/uploads/#{object[0].mainImage}", alt="main image")
   div(id="projects")
     each item in object
       div
-        div= item.name
-        img(src="/uploads/#{item.thumbnailImage}", alt="thumbnail image")
+        a(href="/project/#{item.name}")
+          div= item.name
+          img(src="/uploads/#{item.thumbnailImage}", alt="thumbnail image")

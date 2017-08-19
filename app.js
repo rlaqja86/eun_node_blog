@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var main = require('./routes/main');
 var categoryBuilder = require('./routes/categoryBuilder');
 var admin = require('./routes/categoryBuilder')
+var project = require('./routes/project')
 
 var app = express();
 
@@ -28,11 +29,13 @@ app.locals.pretty = true;
 app.use('/', index);
 app.use('/main', main);;
 app.use('/categoryBuilder', categoryBuilder);
+app.use('/project', project);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
-    res.render('notFound');
+    // res.redirect('/');
+    res.render('_error_404');
     err.status = 404;
     next(err);
 });
@@ -45,7 +48,7 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('_error');
 });
 
 module.exports = app;

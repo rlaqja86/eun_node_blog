@@ -1,11 +1,6 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
-    title 관리자 페이지
-  body
-  p hey this is just start;
+extends _layout
+block content
+  h3 hey this is just start;
   div
     each category in categories 
         li #{category.name}
