@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var MongoClient = require('mongodb').MongoClient;
+var DB_URL = "mongodb://localhost:27017/local";
+var CATEGORY_COLLECTION_NAME = "projects";
+
 var sampleDate = "2017-01-01";
 var sampleObject = [{
         "name": "작품명1",
@@ -28,7 +32,18 @@ var sampleObject = [{
 // images배열 전체와 date을 받아서 project.jade에 object, date로 넘긴다. 
 router.get('/:projectName', function(req, res, next) {
     var projectName = req.params.projectName;
-    res.render('project', { title: projectName, object: sampleObject, date: sampleDate });
+
+    try {
+        MongoClient.connect(DB_URL, function(err, db) {
+            db.collection(CATEGORY_COLLECTION_NAME).find({ 'name': projectName }).toArray(function(err, result) {
+                console.log(result[0].images);
+                res.render('project', { title: result[0].name, object: result[0].images, date: result[0].date });
+                db.close(); 
+            });
+        });
+    } catch (ex) {
+        console.log(ex);
+    }
 });
 
 module.exports = router;

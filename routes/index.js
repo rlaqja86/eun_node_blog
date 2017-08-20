@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var MongoClient = require('mongodb').MongoClient;
+var DB_URL = "mongodb://localhost:27017/local";
+var CATEGORY_COLLECTION_NAME = "projects";
+
 var sampleObject = [{
         "name": "프로젝트1",
         "date": "2017-09-09",
@@ -83,7 +87,17 @@ var sampleObject = [{
 // 조회할 개수는 한페이지에 표시할 프로젝트수로 정한다.
 // index.jade에 object로 넘긴다.
 router.get('/', function(req, res, next) {
-    res.render('index', { title: "eunhye", object: sampleObject });
+    try {
+        MongoClient.connect(DB_URL, function(err, db) {
+            db.collection(CATEGORY_COLLECTION_NAME).find().toArray(function(err, result) {
+                console.log(result);
+                res.render('index', { title: "eunhye", object: result });
+                db.close(); 
+            });
+        });
+    } catch (ex) {
+        console.log(ex);
+    }
 });
 
 module.exports = router;

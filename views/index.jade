@@ -3,7 +3,7 @@ block content
   div(id="main")
     a(href="/project/#{object[0].name}")
       div #{object[0].description}
-    img(src="/uploads/#{object[1].mainImage}", alt="main image")
+    img(src="/uploads/#{object[0].mainImage}", alt="main image")
   div(id="projects")
     each item in object
       div(data-image="#{item.mainImage}" data-description="#{item.description}")

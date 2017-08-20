@@ -19,8 +19,8 @@ $(document).ready(function() {
     });
 
     $trigger.on('mouseout', function() {
-        var imageName = $('#projects>div:nth-child(2)').data('image'),
-            description = $('#projects>div:nth-child(2)').data('description'),
+        var imageName = $('#projects>div:nth-child(1)').data('image'),
+            description = $('#projects>div:nth-child(1)').data('description'),
             $mainImage = $('#main>img'),
             $description = $('#main>a>div'),
             $thisText = $(this).find('a>div');
