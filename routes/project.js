@@ -36,9 +36,12 @@ router.get('/:projectName', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
             db.collection(CATEGORY_COLLECTION_NAME).find({ 'name': projectName }).toArray(function(err, result) {
-                console.log(result[0].images);
-                res.render('project', { title: result[0].name, object: result[0].images, date: result[0].date });
-                db.close(); 
+                if (result.length != 0) {
+                    res.render('project', { title: result[0].name, object: result[0].images, date: result[0].date });
+                } else {
+                    res.redirect('/');
+                }
+                db.close();
             });
         });
     } catch (ex) {

@@ -90,7 +90,6 @@ router.get('/', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
             db.collection(CATEGORY_COLLECTION_NAME).find().toArray(function(err, result) {
-                console.log(result);
                 res.render('index', { title: "eunhye", object: result });
                 db.close(); 
             });
