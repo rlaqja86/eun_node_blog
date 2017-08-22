@@ -18,6 +18,9 @@ $(document).ready(function() {
                     project += `</a></div>`;
                 })
                 $('#projects').html(project);
+
+                $('#pages>#page').css("font-size", "14px");
+                $('#page.' + page).css("font-size", "20px");
             }
         });
     });

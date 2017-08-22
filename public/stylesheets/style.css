@@ -197,6 +197,10 @@ header {
     cursor: pointer;
 }
 
+#page:first-child {
+    font-size: 20px;
+}
+
 footer {
     float: left;
     clear: both;
