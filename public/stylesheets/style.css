@@ -46,7 +46,19 @@ h5 {
 }
 
 h6 {
-    font-size: 10px;
+    font-size: 13px;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
 }
 
 input,
@@ -55,12 +67,6 @@ button {
     border: 1px solid black;
     margin: 5px;
     padding: 5px;
-}
-
-input[type="file"] * {
-    font-family: 'Nanum Myeongjo', 바탕, serif;
-    overflow: hidden;
-    border: 0;
 }
 
 body {
@@ -82,15 +88,20 @@ header {
     clear: both;
     width: 100%;
     padding: 10px;
-    margin-bottom: 30px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.title {
+#title {
     float: left;
 }
 
-.link {
+#title>h1,
+#title>h6 {
+    line-height: 100%;
+}
+
+#link {
     float: right;
     border: 1px solid black;
     margin: 1px;
@@ -260,4 +271,10 @@ div#slideWrap {
 
 .fotorama__caption {
     text-align: right;
+}
+
+img.about {
+    width: 320px;
+    height: 180px;
+    margin: 20px;
 }

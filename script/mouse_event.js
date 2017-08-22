@@ -21,6 +21,7 @@ $(document).ready(function() {
 
         // div height를 100%로 늘리고나서 :hover로 처리하는게 더 간단할까
         // 아니면 여기다 몰아놓는게 관리하기편할까
+        // css로 옮기는게 코드가 더 짧아지니까 좋을듯
         $thisText.css("color", "#ffca28");
         $thisText.css("font-weight", "bold");
         $thisText.css("font-size", "16px");

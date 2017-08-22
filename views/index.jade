@@ -12,6 +12,6 @@ block content
             div= item.name
             img(src="/uploads/#{item.thumbnailImage}" alt="thumbnail image")
     div(id="pages")
-        -for (var i = 1; i < pageTotal+1; i++)
-          span(id="page" class="#{i}" data-page="#{i}" date-projectPart="#{projectPart}")= i
+      -for (var i = 1; i < pageTotal+1; i++)
+        span(id="page" class="#{i}" data-page="#{i}" date-projectPart="#{projectPart}")= i
         
