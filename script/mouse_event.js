@@ -1,12 +1,21 @@
 $(document).ready(function() {
-    var $trigger = $('#projects>div');
+    var $trigger = $('#projects>#project'),
+        $mainImage = $('#main>img'),
+        $description = $('#main>a>div');
+
+    var latestImage = $("#projects").data('latest_image');
+    var latestDescription = $("#projects").data('latest_description');
+    console.log(latestImage);
+    console.log(latestDescription);
+
 
     $trigger.on('mouseover', function() {
         var imageName = $(this).data('image'),
             description = $(this).data('description'),
-            $mainImage = $('#main>img'),
-            $description = $('#main>a>div'),
             $thisText = $(this).find('a>div');
+
+        $(top.document).find('#main>img').attr('src', '/uploads/' + imageName);
+
         $mainImage.attr('src', '/uploads/' + imageName);
         $description.text(description);
 
@@ -19,13 +28,10 @@ $(document).ready(function() {
     });
 
     $trigger.on('mouseout', function() {
-        var imageName = $('#projects>div:nth-child(1)').data('image'),
-            description = $('#projects>div:nth-child(1)').data('description'),
-            $mainImage = $('#main>img'),
-            $description = $('#main>a>div'),
-            $thisText = $(this).find('a>div');
-        $mainImage.attr('src', '/uploads/' + imageName);
-        $description.text(description);
+        var $thisText = $(this).find('a>div');
+
+        $mainImage.attr('src', '/uploads/' + latestImage);
+        $description.text(latestDescription);
         $thisText.css("color", "white");
         $thisText.css("font-weight", "normal");
         $thisText.css("font-size", "14px");
