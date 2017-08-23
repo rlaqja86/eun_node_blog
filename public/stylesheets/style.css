@@ -91,7 +91,7 @@ header {
 
 #link {
     float: right;
-    border: 1px solid black;
+    border: 1px solid darkcyan;
     margin: 1px;
     padding: 5px;
 }
@@ -113,7 +113,7 @@ header {
     z-index: 900;
 }
 
-#projectWrap {
+#projectsWrap {
     float: right;
     width: 23%;
     height: 468px;
@@ -213,15 +213,6 @@ a#instagram:hover {
     color: #0080c0;
 }
 
-#about {
-    float: left;
-}
-
-#hi {
-    clear: both;
-    float: right;
-}
-
 div#slideWrap {
     width: 100%;
     margin: 0 auto;
@@ -231,14 +222,54 @@ div#slideWrap {
     text-align: right;
 }
 
-.about {
-    margin: 10px;
+.fotorama__caption__wrap {
+    text-align: right;
+}
+
+.about,
+.hi {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 img.about {
     width: 320px;
     height: 180px;
 }
+
+#books {
+    width: 80%;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#book {
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 230px;
+}
+
+#book>div,
+#book>img {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#book>div {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.30);
+    color: white;
+}
+
+
+/* 캡션 속성 */
 
 .caption {
     position: absolute;
