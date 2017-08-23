@@ -57,9 +57,14 @@ button {
     padding: 5px;
 }
 
-body {
-    width: 100vw;
+html {
+    overflow-y: scroll;
+    width: 100%;
     height: 100%;
+}
+
+body {
+    width: 100%;
     text-align: center;
 }
 
@@ -69,6 +74,7 @@ body {
     margin-right: 10px;
     display: inline-block;
     text-align: left;
+    /* box-shadow: 0 0 115px black; */
 }
 
 header {
