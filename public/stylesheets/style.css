@@ -102,7 +102,16 @@ header {
     padding: 5px;
 }
 
-#main {
+#bodyItem {
+    width: 100%;
+    /* header height + footer height + margin */
+    /* header, footer 높이 확정되면 변경하기 */
+    min-height: calc(100vh - 74px - 88px - 60px);
+    clear: both;
+    float: left;
+}
+
+#projectPreview {
     float: left;
     clear: both;
     width: 77%;
@@ -110,7 +119,7 @@ header {
     position: relative;
 }
 
-#main>img {
+#projectPreview>img {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -299,11 +308,11 @@ img.about {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0)); */
 }
 
-#main>a>div.caption {
+#projectPreview>a>div.caption {
     height: 15%;
 }
 
-#main>a>div.caption:hover,
+#projectPreview>a>div.caption:hover,
 #projects>#project>a>div.caption:hover {
     color: #ffca28;
     font-size: 16px;
