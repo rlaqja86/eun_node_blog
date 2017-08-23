@@ -11,18 +11,6 @@
     line-height: 130%;
     font-family: 'Nanum Myeongjo', 바탕, serif;
     font-size: 14px;
-    /* border: 1px solid #A3A3A3; */
-}
-
-a:after,
-a:link,
-a:active {
-    color: #0080c0;
-}
-
-a:visited,
-a:hover {
-    color: darkcyan;
 }
 
 h1 {
@@ -116,22 +104,6 @@ header {
     position: relative;
 }
 
-#main>a>div {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 15%;
-    padding: 10px;
-    color: #C6C6C6;
-    background: rgba(0, 0, 0, 0.30);
-    /* background: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
-    background: -o-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
-    background: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0)); */
-}
-
 #main>img {
     width: 100%;
     height: 100%;
@@ -139,14 +111,6 @@ header {
     top: 0;
     left: 0;
     z-index: 900;
-}
-
-#main>div>a:after,
-#main>div>a:link,
-#main>div>a:visited,
-#main>div>a:active,
-#main>div>a:hover {
-    color: rgba(255, 255, 255, 0.8);
 }
 
 #projectWrap {
@@ -172,28 +136,12 @@ header {
     margin-bottom: 1%;
 }
 
-#projects>div>a>div,
-#projects>div>a>img {
+#projects>#project>img {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-}
-
-#projects>div>a>div {
-    color: white;
-    z-index: 1000;
-    height: 50%;
-    -webkit-transition: all 0.3s 0s ease;
-    -moz-transition: all 0.3s 0s ease;
-    -ms-transition: all 0.3s 0s ease;
-    -o-transition: all 0.3s 0s ease;
-    transition: all 0.3s 0s ease;
-    /* 
-    transition : property duration delay type 
-    property 을 delay 후에 duration 동안 type 효과를 보여준다
-    */
 }
 
 #pages {
@@ -204,7 +152,10 @@ header {
 }
 
 #pages>#page {
-    margin: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
     cursor: pointer;
 }
 
@@ -221,6 +172,17 @@ footer {
 
 footer>div>p>a {
     padding: 7px;
+}
+
+a:after,
+a:link,
+a:active {
+    color: #0080c0;
+}
+
+a:visited,
+a:hover {
+    color: darkcyan;
 }
 
 a#facebook:link,
@@ -243,11 +205,7 @@ a#instagram:visited {
 
 a#facebook:active,
 a#youtube:active,
-a#instagram:active {
-    text-decoration: none;
-    color: #0080c0;
-}
-
+a#instagram:active,
 a#facebook:hover,
 a#youtube:hover,
 a#instagram:hover {
@@ -273,8 +231,45 @@ div#slideWrap {
     text-align: right;
 }
 
+.about {
+    margin: 10px;
+}
+
 img.about {
     width: 320px;
     height: 180px;
-    margin: 20px;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: #C6C6C6;
+    background: rgba(0, 0, 0, 0.30);
+    /* transition : property duration delay type  */
+    -webkit-transition: all 0.3s 0s ease;
+    -moz-transition: all 0.3s 0s ease;
+    -ms-transition: all 0.3s 0s ease;
+    -o-transition: all 0.3s 0s ease;
+    transition: all 0.3s 0s ease;
+    /* background: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
+    background: -o-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
+    background: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0)); */
+}
+
+#main>a>div.caption {
+    height: 15%;
+}
+
+#main>a>div.caption:hover,
+#projects>#project>a>div.caption:hover {
+    color: #ffca28;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.70);
 }

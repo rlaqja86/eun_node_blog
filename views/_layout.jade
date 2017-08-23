@@ -6,28 +6,24 @@ html
     title= title
     script(src="https://use.fontawesome.com/2e9e0ef954.js")
     script(src="http://code.jquery.com/jquery-1.10.2.min.js")
-    script(src="/plugins/fotorama-4.6.4/fotorama.js")
-    script(src="/js/mouse_event.js")
-    script(src="/js/page_event.js")
-    link(rel="stylesheet" href="/plugins/fotorama-4.6.4/fotorama.css")
     link(rel="stylesheet" href="/stylesheets/style.css")
 
   body
-    div(id="bodyWrap")
+    div#bodyWrap
       header
-        a(id="title" href="/") 
+        a#title(href="/") 
           h1 Hellomate 
           h6.center Welcome to Eun-hye's site
-        a(id="link" href="/hi") 안녕출판사
-        a(id="link" href="/about") about
-        a(id="link" href="/categoryBuilder") 카테고리빌더
+        a#link(href="/hi") 안녕출판사
+        a#link(href="/about") about
+        a#link(href="/categoryBuilder") 카테고리빌더
       block content
       footer
-        div(id="snsLink")
-          p(align="center")
-            a(href="https://www.facebook.com/" id="facebook" target="_blank" title="페이스북")
-              i(class="fa fa-facebook-official fa-2x" aria-hidden="true")
-            a(href="https://www.youtube.com/" id="youtube" target="_blank" title="유튜브")
-              i(class="fa fa-youtube fa-2x" aria-hidden="true")
-            a(href="https://www.instagram.com" id="instagram" target="_blank" title="인스타그램")
-              i(class="fa fa-instagram fa-2x" aria-hidden="true")
+        div#snsLink
+          p.center
+            a#facebook(href="https://www.facebook.com/" target="_blank" title="페이스북")
+              i.fa.fa-facebook-official.fa-2x(aria-hidden="true")
+            a#youtube(href="https://www.youtube.com/" target="_blank" title="유튜브")
+              i.fa.fa-youtube.fa-2x(aria-hidden="true")
+            a#instagram(href="https://www.instagram.com" target="_blank" title="인스타그램")
+              i.fa.fa-instagram.fa-2x(aria-hidden="true")

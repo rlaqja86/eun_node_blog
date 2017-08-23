@@ -84,7 +84,7 @@ var sampleObject = [{
 ];
 
 var PROJECT_TOTAL = 7; // 프로젝트의 총 개수, 디비에서 받아온다
-var PROJECT_PART = 2; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다 
+var PROJECT_PART = 3; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다 
 var PAGE_TOTAL = Math.ceil(PROJECT_TOTAL / PROJECT_PART); // 총 페이지수, 계산된다
 var PAGE_PART = 5; // 끊어서 보여줄 페이지수, 관리자가 정한다
 

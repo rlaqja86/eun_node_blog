@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    var $trigger = $('#pages>#page');
+    var trigger = '#pages>#page';
 
-    $trigger.on('click', function() {
+    $(document).on('click', trigger, function() {
         var page = $(this).data('page');
 
         $.ajax({
@@ -9,16 +9,14 @@ $(document).ready(function() {
             url: "/page/" + page,
             dataType: "json",
             success: function(data) {
-                var project = `<script src="/js/mouse_event.js"></script>`;
+                var project = ``;
                 $.each(data, function(index, item) {
-                    project += `<div id ='project' data-image='${item.mainImage}' data-description='${item.description}'>`;
+                    project += `<div id ='project'>`;
+                    project += `<img src='/uploads/${item.thumbnailImage}' alt='thumbnail image'>`;
                     project += `<a href='/project/${item.name}'>`;
-                    project += `<div>${item.name}</div>`;
-                    project += `<img src='/uploads/${item.thumbnailImage}' alt='thumbnail image'`;
-                    project += `</a></div>`;
+                    project += `<div class='caption' data-image='${item.mainImage}' data-description='${item.description}'>${item.name}</div></a></div>`;
                 })
                 $('#projects').html(project);
-
                 $('#pages>#page').css("font-size", "14px");
                 $('#page.' + page).css("font-size", "20px");
             }
