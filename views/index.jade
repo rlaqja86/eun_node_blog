@@ -3,16 +3,16 @@ block content
   script(src="/js/project_hover.js")
   script(src="/js/project_paginate.js")
   div#projectPreview
-    img(src="/uploads/#{object[0].mainImage}", alt="main image")
+    img(src="/uploads/#{object[0].images.image}", alt="main image")
     a(href="/project/#{object[0].name}")
       div.caption #{object[0].description}
   div#projectsWrap
-    div#projects(data-latest_image="#{object[0].mainImage}" data-latest_description="#{object[0].description}")
+    div#projects(data-latest_image="#{object[0].images.image}" data-latest_description="#{object[0].description}")
       each item in object
         div#project
-          img(src="/uploads/#{item.thumbnailImage}" alt="thumbnail image")
+          img(src="/uploads/#{item.images.image}" alt="thumbnail image")
           a(href="/project/#{item.name}")
-            div.caption(data-image="#{item.mainImage}" data-description="#{item.description}")= item.name
+            div.caption(data-image="#{item.images.image}" data-description="#{item.description}")= item.name
     div#pages
       -for (var i = 1; i < pageTotal+1; i++)
         span#page(class="#{i}" data-page="#{i}" date-projectPart="#{projectPart}")= i

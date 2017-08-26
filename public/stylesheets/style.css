@@ -284,6 +284,11 @@ img.about {
     color: white;
 }
 
+#bookView {
+    width: 100%;
+    height: 800px;
+}
+
 
 /* 캡션 속성 */
 

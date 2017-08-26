@@ -10,12 +10,11 @@ var emptyObject = [{
     "date": "2017-01-01",
     "site": "대한민국 서울",
     "description": "프로젝트를 등록해주세요",
-    "mainImage": "thumbnail.jpg",
-    "thumbnailImage": "thumbnail.jpg",
     "images": [{
         "name": "등록된 작품이 없습니다",
         "description": "작품을 등록해주세요",
-        "image": "thumbnail.jpg"
+        "image": "thumbnail.jpg",
+        "isMain": true
     }]
 }];
 
@@ -30,7 +29,8 @@ var PAGE_PART = 5; // 끊어서 보여줄 페이지수, 관리자가 정한다
 router.get('/', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
-            db.collection(CATEGORY_COLLECTION_NAME).find().limit(PROJECT_PART).toArray(function(err, result) {
+            // db.collection(CATEGORY_COLLECTION_NAME).find().limit(PROJECT_PART).toArray(function(err, result) 
+            db.collection(CATEGORY_COLLECTION_NAME).aggregate([{ $unwind: "$images" }, { $match: { "images.isMain": true } }, { $sort: { "date": -1, "name": 1 } }]).limit(PROJECT_PART).toArray(function(err, result) {
                 if (result.length != 0) {
                     res.render('index', { title: "eunhye", object: result, pageTotal: PAGE_TOTAL, pagePart: PAGE_PART, projectPart: PROJECT_PART });
                 } 
