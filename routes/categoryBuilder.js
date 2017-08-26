@@ -8,7 +8,7 @@ var express = require('express'),
     ObjectID = require('mongodb').ObjectID,
     MongoClient = require('mongodb').MongoClient,
 
-    CATEGORY_COLLECTION_NAME = "category",
+    PROJECT_COLLECTION_NAME = "project",
     NUMBER_COUNT_COLLECTION_NAME = "numberCount",
     FIRST_INDEX = 0,
 
@@ -25,16 +25,19 @@ var express = require('express'),
     fs = require('fs');
 
 /* save category. */
-
-router.post('/save', upload.fields([{ name: 'thumbnailImage' }, { name: 'image' }]), function(req, res, next) {
+var type = upload.single('file');
+router.post('/save', type, function(req, res, next) {
     try {
-        MongoClient.connect(url, function(err, db) {
-            var imageName = req.files.image[FIRST_INDEX].filename;
-            var thumbnailImageName = req.files.thumbnailImage[FIRST_INDEX].filename;
-            var categoryName = req.param('categoryName');
-            db.collection(CATEGORY_COLLECTION_NAME).save(createCategory(db, categoryName, imageName, thumbnailImageName));
+       /* MongoClient.connect(url, function(err, db) {
+                        console.log(req.files)
+
+            var image = req.files.image[FIRST_INDEX].filename;
+            console.log(req.files)
+            //var projectName = req.param('projectName');
+            db.collection(PROJECT_COLLECTION_NAME).save(createProject(db, projectName, image));
             res.redirect('/categoryBuilder');
-        });
+        });*/
+        console.log(req)
     } catch (ex) {
         console.log(ex);
     }
@@ -44,8 +47,8 @@ router.post('/save', upload.fields([{ name: 'thumbnailImage' }, { name: 'image' 
 router.get('/', function(req, res, next) {
     try {
         MongoClient.connect(url, function(err, db) {
-            db.collection(CATEGORY_COLLECTION_NAME).find().toArray(function(err, result) {
-                res.status(200).render('admin', { categories: result });  
+            db.collection(PROJECT_COLLECTION_NAME).find().toArray(function(err, result) {
+                res.status(200).render('admin', { projects: result });  
                 db.close(); 
             });
         });
@@ -54,13 +57,14 @@ router.get('/', function(req, res, next) {
     }
 });
 
-function createCategory(db, categoryName, imageFileName) {
-    var category = require('../bin/domain/Category');
-    category._id = new ObjectID();
-    category.name = categoryName;
-    category.imageFileName = imageFileName;
+function createProject(db, name, image) {
+    var project = require('../bin/domain/ProjectEntity');
+    var image = require('../bin/domain/ProjectImage');
+    project._id = new ObjectID();
+    project.name = name;
+    project.image = image;
 
-    return category;
+    return project;
 }
 
 module.exports = router;
