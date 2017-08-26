@@ -6,12 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var main = require('./routes/main');
-var board = require('./routes/board');
-var gallery = require('./routes/gallery');
 var categoryBuilder = require('./routes/categoryBuilder');
 var admin = require('./routes/categoryBuilder')
+var project = require('./routes/project')
+var about = require('./routes/about')
+var hi = require('./routes/hi')
 
 var app = express();
 
@@ -20,31 +20,35 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+<<<<<<< HEAD
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
 app.use('/customScript', express.static(__dirname + '/views/js/'));
 app.use('/bootstrap/', express.static(path.join(__dirname + "/node_modules/jade-bootstrap")))
 
+=======
+app.use('/js', express.static(path.join(__dirname, 'script')));
+>>>>>>> 9d193c92736154e66265a9ad7e3ad0e5fc628265
 app.locals.pretty = true;
 
 app.use('/', index);
-app.use('/users', users);
 app.use('/main', main);;
-
-app.use('/board', board);
-app.use('/gallery', gallery);
 app.use('/categoryBuilder', categoryBuilder);
+app.use('/project', project);
+app.use('/about', about);
+app.use('/hi', hi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
-    res.render('notFound');
+    // res.redirect('/');
+    res.render('_error_404');
     err.status = 404;
     next(err);
 });
@@ -57,7 +61,7 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('_error');
 });
 
 module.exports = app;

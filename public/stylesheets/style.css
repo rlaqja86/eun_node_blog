@@ -1,57 +1,306 @@
+@charset "utf-8";
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 * {
-    margin: 0;
-    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    line-height: 130%;
+    font-family: 'Nanum Myeongjo', 바탕, serif;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 34px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 13px;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+input,
+button {
+    font-family: 'Nanum Myeongjo', 바탕, serif;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
 }
 
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    max-width: 1080px;
-    margin: 0 auto;
-    background-color: #373737;
+    width: 100vw;
+    height: 100%;
+    text-align: center;
 }
 
-a {
-    color: #00B7FF;
+#bodyWrap {
+    width: 1080px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    text-align: left;
 }
 
-li {
-    border: 1px solid #00b7ff;
-    width: 130px;
-    padding: 5px;
-    margin: 10px;
-}
-
-div {
+header {
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.content {
-    background-color: #e2e2e2;
+#title {
+    float: left;
+}
+
+#title>h1,
+#title>h6 {
+    line-height: 100%;
+}
+
+#link {
+    float: right;
+    border: 1px solid darkcyan;
+    margin: 1px;
     padding: 5px;
-    height: 150px;
 }
 
-.gallery {
-    background-color: #e2e2e2;
-    padding: 5px;
+#main {
+    float: left;
+    clear: both;
+    width: 77%;
+    height: 468px;
+    position: relative;
 }
 
-.wrap {
-    margin: 2%;
+#main>img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 900;
 }
 
-.button {
+#projectsWrap {
+    float: right;
+    width: 23%;
+    height: 468px;
+}
+
+#projects {
+    float: right;
+    width: 100%;
+    height: 438px;
+    overflow-y: auto;
+}
+
+#projects>#project {
+    float: left;
+    position: relative;
+    width: 49%;
+    height: 69px;
     padding: 10px;
+    margin-left: 1%;
+    margin-bottom: 1%;
 }
 
-.textBox {
-    width: 300px;
-    margin-bottom: 20px;
+#projects>#project>img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-img {
-    width: 20%;
-    padding: 2.5%;
+#pages {
+    height: 30px;
+    clear: both;
+    text-align: center;
+    padding: 5px;
+}
+
+#pages>#page {
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: pointer;
+}
+
+#page:first-child {
+    font-size: 20px;
+}
+
+footer {
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: 30px;
+}
+
+footer>div>p>a {
+    padding: 7px;
+}
+
+a:after,
+a:link,
+a:active {
+    color: #0080c0;
+}
+
+a:visited,
+a:hover {
+    color: darkcyan;
+}
+
+a#facebook:link,
+a#facebook:visited {
+    text-decoration: none;
+    color: #3d588f;
+}
+
+a#youtube:link,
+a#youtube:visited {
+    text-decoration: none;
+    color: #a52c2e;
+}
+
+a#instagram:link,
+a#instagram:visited {
+    text-decoration: none;
+    color: #4e2f33;
+}
+
+a#facebook:active,
+a#youtube:active,
+a#instagram:active,
+a#facebook:hover,
+a#youtube:hover,
+a#instagram:hover {
+    text-decoration: none;
+    color: #0080c0;
+}
+
+div#slideWrap {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.fotorama__caption {
+    text-align: right;
+}
+
+.fotorama__caption__wrap {
+    text-align: right;
+}
+
+.about,
+.hi {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+img.about {
+    width: 320px;
+    height: 180px;
+}
+
+#books {
+    width: 80%;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#book {
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 230px;
+}
+
+#book>div,
+#book>img {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#book>div {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.30);
+    color: white;
+}
+
+
+/* 캡션 속성 */
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: #C6C6C6;
+    background: rgba(0, 0, 0, 0.30);
+    /* transition : property duration delay type  */
+    -webkit-transition: all 0.3s 0s ease;
+    -moz-transition: all 0.3s 0s ease;
+    -ms-transition: all 0.3s 0s ease;
+    -o-transition: all 0.3s 0s ease;
+    transition: all 0.3s 0s ease;
+    /* background: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
+    background: -o-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
+    background: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0)); */
+}
+
+#main>a>div.caption {
+    height: 15%;
+}
+
+#main>a>div.caption:hover,
+#projects>#project>a>div.caption:hover {
+    color: #ffca28;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.70);
 }
