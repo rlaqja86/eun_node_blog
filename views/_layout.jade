@@ -1,14 +1,14 @@
-doctype html
-html
-  head
-    meta(charset="utf-8")
-    //- meta(name="viewport" content="width=device-width initial-scale=1.0")
-    title= title
-    script(src="https://use.fontawesome.com/2e9e0ef954.js")
-    script(src="http://code.jquery.com/jquery-1.10.2.min.js")
-    link(rel="stylesheet" href="/stylesheets/style.css")
+extends ../node_modules/jade-bootstrap/_bootstrap
 
-  body
+append scripts
+    script(src="https://use.fontawesome.com/2e9e0ef954.js")
+    //- script(src="http://code.jquery.com/jquery-1.10.2.min.js")
+    
+append styles
+    link(rel="stylesheet" href="/stylesheets/style.css")
+    link(href='/bootstrap/css/dashboard.css', rel='stylesheet')
+
+block body
     div#bodyWrap
       header
         a#title(href="/") 
@@ -16,7 +16,7 @@ html
           h6.center Welcome to Eun-hye's site
         a#link(href="/hi") 안녕출판사
         a#link(href="/about") about
-        a#link(href="/categoryBuilder") 카테고리빌더
+        a#link(href="/admin") 카테고리빌더
       div#bodyItem
         block content
       footer
@@ -28,4 +28,4 @@ html
               i.fa.fa-youtube.fa-2x(aria-hidden="true")
             a#instagram(href="https://www.instagram.com" target="_blank" title="인스타그램")
               i.fa.fa-instagram.fa-2x(aria-hidden="true")
-            block scripts
+            block footerScript

@@ -1,7 +1,9 @@
 var projectImage = function() {
-    var _id;
-    var name;
-    var description;
-    var images;
+    this._id;
+    this.name;
+    this.description;
+    this.image;
+    this.isMain
 }
-module.exports = new projectImage();
+module.exports = projectImage;
+

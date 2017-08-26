@@ -1,37 +1,28 @@
 extends _layout
-
-block content
+block content  
 	.table-responsive
 		table.table.table-striped
 			thead
 				tr
 					th name		
-					th name
+					th date
+					th site
+					th description
 			tbody
 				each project in projects
 					tr
 						td
 							li #{project.name}
-							li #{project.name}
+						td
+							li #{project.date}
+						td
+							li #{project.site}
+						td
+							li #{project.description}
 
-
-
-		div#formgroup(data-value='["default-value"]')
-			form#myDrop.dropzone(method='POST' action='/categoryBuilder/save' enctype='multipart/form-data')
-				input#image-input(type="file" name='image')
-				button#sub-image-submit() 제출
-
-block scripts
-	script(src='/scripts/dropzone/dist/dropzone.js')
-	script(src='/scripts/jquery/dist/jquery.js')
-	script(src='/customScript/myDropzone.js')
-	
-	link(rel="stylesheet" href="/scripts/dropzone/dist/dropzone.css")
-	link(rel="stylesheet" href="/scripts/dropzone/dist/basic.css")
-	link(rel="stylesheet" href="/bootstrap/css/*") 
-
-
-
+						
+						
+					
 
 
 

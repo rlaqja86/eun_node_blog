@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var main = require('./routes/main');
-var categoryBuilder = require('./routes/categoryBuilder');
-var admin = require('./routes/categoryBuilder')
+var admin = require('./routes/admin');
 var project = require('./routes/project')
 var about = require('./routes/about')
 var hi = require('./routes/hi')
@@ -35,7 +34,7 @@ app.locals.pretty = true;
 
 app.use('/', index);
 app.use('/main', main);;
-app.use('/categoryBuilder', categoryBuilder);
+app.use('/admin', admin);
 app.use('/project', project);
 app.use('/about', about);
 app.use('/hi', hi);

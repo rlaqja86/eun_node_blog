@@ -5,83 +5,20 @@ var MongoClient = require('mongodb').MongoClient;
 var DB_URL = "mongodb://localhost:27017/local";
 var CATEGORY_COLLECTION_NAME = "projects";
 
-var sampleObject = [{
-        "name": "프로젝트1",
-        "date": "2017-09-09",
-        "site": "서울시 마포구",
-        "description": "프로젝트설명1",
-        "mainImage": "thumbnail.jpg",
-        "thumbnailImage": "thumbnail.jpg",
-        "images": [{
-                "name": "작품명1",
-                "description": "작품설명1",
-                "image": "thumbnail.jpg"
-            },
-            {
-                "name": "작품명2",
-                "description": "작품설명2",
-                "image": "thumbnail.jpg"
-            }
-        ]
-    },
-    {
-        "name": "프로젝트2",
-        "date": "2017-10-09",
-        "site": "서울시 서대문구",
-        "description": "프로젝트설명2",
-        "mainImage": "image1.jpg",
-        "thumbnailImage": "image1.jpg",
-        "images": [{
-                "name": "작품명1",
-                "description": "작품설명1",
-                "image": "thumbnail.jpg"
-            },
-            {
-                "name": "작품명2",
-                "description": "작품설명2",
-                "image": "thumbnail.jpg"
-            }
-        ]
-    },
-    {
-        "name": "프로젝트3",
-        "date": "2017-12-09",
-        "site": "서울시 서대문구",
-        "description": "프로젝트설명3",
-        "mainImage": "image2.jpg",
-        "thumbnailImage": "image2.jpg",
-        "images": [{
-                "name": "작품명1",
-                "description": "작품설명1",
-                "image": "thumbnail.jpg"
-            },
-            {
-                "name": "작품명2",
-                "description": "작품설명2",
-                "image": "thumbnail.jpg"
-            }
-        ]
-    },
-    {
-        "name": "프로젝트4",
-        "date": "2017-12-09",
-        "site": "서울시 서대문구",
-        "description": "프로젝트설명4",
-        "mainImage": "image3.jpg",
-        "thumbnailImage": "image3.jpg",
-        "images": [{
-                "name": "작품명1",
-                "description": "작품설명1",
-                "image": "thumbnail.jpg"
-            },
-            {
-                "name": "작품명2",
-                "description": "작품설명2",
-                "image": "thumbnail.jpg"
-            }
-        ]
-    }
-];
+var emptyObject = [{
+    "name": "등록된 프로젝트가 없습니다",
+    "date": "2017-01-01",
+    "site": "대한민국 서울",
+    "description": "프로젝트를 등록해주세요",
+    "mainImage": "thumbnail.jpg",
+    "thumbnailImage": "thumbnail.jpg",
+    "images": [{
+        "name": "등록된 작품이 없습니다",
+        "description": "작품을 등록해주세요",
+        "image": "thumbnail.jpg",
+        "isMain": "true"
+    }]
+}];
 
 var PROJECT_TOTAL = 7; // 프로젝트의 총 개수, 디비에서 받아온다
 var PROJECT_PART = 3; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다 
@@ -95,8 +32,13 @@ router.get('/', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
             db.collection(CATEGORY_COLLECTION_NAME).find().limit(PROJECT_PART).toArray(function(err, result) {
-                res.render('index', { title: "eunhye", object: result, pageTotal: PAGE_TOTAL, pagePart: PAGE_PART, projectPart: PROJECT_PART });
-                db.close(); 
+                if (result.length != 0) {
+                    res.render('index', { title: "eunhye", object: result, pageTotal: PAGE_TOTAL, pagePart: PAGE_PART, projectPart: PROJECT_PART });
+                } 
+                else {
+                    res.render('index', { title: "eunhye", object: emptyObject, pageTotal: PAGE_TOTAL, pagePart: PAGE_PART, projectPart: PROJECT_PART });
+                }
+                db.close();
             });
         });
     } catch (ex) {
