@@ -26,15 +26,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-<<<<<<< HEAD
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
 app.use('/customScript', express.static(__dirname + '/views/js/'));
 app.use('/bootstrap/', express.static(path.join(__dirname + "/node_modules/jade-bootstrap")))
-
-=======
 app.use('/js', express.static(path.join(__dirname, 'script')));
->>>>>>> 9d193c92736154e66265a9ad7e3ad0e5fc628265
 app.locals.pretty = true;
 
 app.use('/', index);
