@@ -4,9 +4,6 @@ var ProjectEntity = function() {
     var date;
     var site;
     var description;
-    var mainImage;
-    var thumbnailImage;
     var images;
-    var linkUrl;
 }
 module.exports = new ProjectEntity();

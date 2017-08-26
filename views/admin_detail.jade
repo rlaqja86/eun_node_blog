@@ -1,0 +1,23 @@
+extends _layout
+
+block content
+    div#formgroup(data-value='["default-value"]')
+        form#myDrop.dropzone(method='POST' action='/admin/save' enctype='multipart/form-data' name="files")
+            label(for='projectname',class='control-label') 프로젝트명
+               input#image-input(type="text" name='projectname')
+            label(for='description',class='control-label') 설명
+               input#image-input(type="text" name='projectdescription')   
+            label(for='site',class='control-label') 장소
+                input#image-input(type="text" name='projectsite')
+            label(for='date',class='control-label') 날짜
+               input#image-input(type="text" name='projectdate')
+            button#sub-image-submit() 제출
+
+block footerScript
+    script(src='/scripts/dropzone/dist/dropzone.js')
+    script(src='/scripts/jquery/dist/jquery.js')
+    script(src='/js/myDropzone.js')
+    link(rel="stylesheet" href="/scripts/dropzone/dist/dropzone.css")
+    link(rel="stylesheet" href="/scripts/dropzone/dist/basic.css")
+    link(rel="stylesheet" href="/bootstrap/css/*") 
+
