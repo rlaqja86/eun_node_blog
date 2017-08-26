@@ -148,7 +148,7 @@ header {
     height: 69px;
     padding: 10px;
     margin-left: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 1.2%;
 }
 
 #projects>#project>img {
@@ -171,10 +171,11 @@ header {
     margin-right: 3px;
     padding-left: 3px;
     padding-right: 3px;
+    font-size: 14px;
     cursor: pointer;
 }
 
-#page:first-child {
+#pages>#page:first-child {
     font-size: 20px;
 }
 

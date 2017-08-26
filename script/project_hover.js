@@ -6,10 +6,10 @@ $(document).ready(function() {
     var $description = $('#projectPreview>a>.caption');
 
     $(document).on('mouseover', trigger, function() {
-        var imageName = $(this).data('image'),
+        var image = $(this).data('image'),
             description = $(this).data('description');
 
-        $image.attr('src', '/uploads/' + imageName);
+        $image.attr('src', '/uploads/' + image);
         $description.text(description);
     });
 
