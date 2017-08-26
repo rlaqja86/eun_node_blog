@@ -8,17 +8,21 @@ block content
 					th date
 					th site
 					th description
+					th detail
 			tbody
 				each project in projects
 					tr
 						td
-							li #{project.name}
+							p #{project.name}
 						td
-							li #{project.date}
+							p #{project.date}
 						td
-							li #{project.site}
+							p #{project.site}
 						td
-							li #{project.description}
+							p #{project.description}
+						td
+							button.btn-button-primary(type='button') detail
+
 
 						
 						
