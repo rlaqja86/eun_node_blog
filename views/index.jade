@@ -2,7 +2,7 @@ extends _layout
 block content
   script(src="/js/project_hover.js")
   script(src="/js/project_paginate.js")
-  div#main
+  div#projectPreview
     img(src="/uploads/#{object[0].mainImage}", alt="main image")
     a(href="/project/#{object[0].name}")
       div.caption #{object[0].description}
