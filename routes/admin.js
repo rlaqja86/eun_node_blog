@@ -9,7 +9,7 @@ var express = require('express'),
     MongoClient = require('mongodb').MongoClient,
     Image = require('../bin/domain/ProjectImage'),
 
-    PROJECT_COLLECTION_NAME = "project",
+    PROJECT_COLLECTION_NAME = "projects",
     NUMBER_COUNT_COLLECTION_NAME = "numberCount",
     FIRST_INDEX = 0,
 
@@ -27,23 +27,23 @@ var express = require('express'),
 
 /* save category. */
 router.post('/save', upload.any(), function(req, res, next) {
-      var project = createProject(req);
-         MongoClient.connect(url, function(err, db) {
-             if (err) throw err;
-             db.collection(PROJECT_COLLECTION_NAME).save(project)
-        });
-        res.redirect('/admin')
+    var project = createProject(req);
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        db.collection(PROJECT_COLLECTION_NAME).save(project)
+    });
+    res.redirect('/admin')
 });
 
 /* get admin main page */
 router.get('/', function(req, res, next) {
-        MongoClient.connect(url, function(err, db) {
-            if (err) throw err;
-            db.collection(PROJECT_COLLECTION_NAME).find().toArray(function(err, result) {
-                res.status(200).render('admin', { projects: result });  
-                db.close(); 
-            });
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        db.collection(PROJECT_COLLECTION_NAME).find().toArray(function(err, result) {
+            res.status(200).render('admin', { projects: result });  
+            db.close(); 
         });
+    });
 });
 
 router.get('/detail', function(req, res, next) {
@@ -51,23 +51,23 @@ router.get('/detail', function(req, res, next) {
 });
 
 function createImages(req) {
-        var images = new Array();
-        for (var index = 0; index < req.files.length; index ++) { 
-             var name = req.files[index].originalname, 
-                image = new Image();
-                image._id = new ObjectID();
-                image.name = req.param(name + '_name');
-                image.description = req.param(name + '_description');
-                image.image = req.files[index].filename;
-                image.isMain = req.param(name + '_mainimage');
-                images.push(image);
-            }  
-     return images;
+    var images = new Array();
+    for (var index = 0; index < req.files.length; index++) {
+        var name = req.files[index].originalname,
+            image = new Image();
+        image._id = new ObjectID();
+        image.name = req.param(name + '_name');
+        image.description = req.param(name + '_description');
+        image.image = req.files[index].filename;
+        image.isMain = req.param(name + '_mainimage');
+        images.push(image);
+    }
+    return images;
 }
 
 function createProject(req) {
     var project = require('../bin/domain/ProjectEntity');
-    
+
     project._id = new ObjectID();
     project.name = req.param('projectname');
     project.images = createImages(req);
