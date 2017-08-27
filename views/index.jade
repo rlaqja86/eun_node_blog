@@ -1,19 +1,20 @@
 extends _layout
-block content
+append scripts
   script(src="/js/project_hover.js")
   script(src="/js/project_paginate.js")
+block content
   div#projectPreview
-    img(src="/uploads/#{object[0].images.image}", alt="main image")
-    a(href="/project/#{object[0].name}")
-      div.caption #{object[0].description} <br> #{object[0].date}
+    img(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")
+    a(href="/project/#{projects[0].name}")
+      div.caption #{projects[0].name}<br>#{projects[0].date}
   div#projectsWrap
-    div#projects(data-latest_image="#{object[0].images.image}" data-latest_description="#{object[0].description}" data-latest_date="#{object[0].date}")
-      each item in object
+    div#projects(data-latest_image="#{projects[0].images.image}" data-latest_name="#{projects[0].name}" data-latest_description="#{projects[0].description}" data-latest_date="#{projects[0].date}")
+      each item in projects
         div#project
-          img(src="/uploads/#{item.images.image}" alt="thumbnail image")
+          img(src="/uploads/#{item.images.image}" alt="#{item.images.name}")
           a(href="/project/#{item.name}")
-            div.caption(data-image="#{item.images.image}" data-description="#{item.description}" data-date="#{item.date}")= item.name
+            div.caption(data-image="#{item.images.image}" data-name="#{item.name}" data-description="#{item.description}" data-date="#{item.date}")= item.name
     div#pages
       -for (var i = 1; i < totalPageNum+1; i++)
-        span#page(class="#{i}" data-page="#{i}" date-projectPart="#{projectPart}")= i
+        span#page(class="#{i}" data-page="#{i}")= i
         

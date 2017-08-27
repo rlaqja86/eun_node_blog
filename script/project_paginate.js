@@ -6,15 +6,15 @@ $(document).ready(function() {
 
         $.ajax({
             async: true,
-            url: "/page/" + page,
+            url: `/page/${page}`,
             dataType: "json",
             success: function(data) {
                 var project = ``;
                 $.each(data, function(index, item) {
                     project += `<div id ='project'>`;
-                    project += `<img src='/uploads/${item.images.image}' alt='thumbnail image'>`;
+                    project += `<img src='/uploads/${item.images.image}' alt='${item.name}'>`;
                     project += `<a href='/project/${item.name}'>`;
-                    project += `<div class='caption' data-image='${item.images.image}' data-description='${item.description}'>${item.name}</div></a></div>`;
+                    project += `<div class='caption' data-image='${item.images.image}' data-name='${item.name}' data-description='${item.description}' data-date='${item.date}'>${item.name}</div></a></div>`;
                 })
                 $('#projects').html(project);
                 $('#pages>#page').css("font-size", "14px");
