@@ -35,6 +35,7 @@ router.post('/save', upload.any(), function(req, res, next) {
     res.redirect('/admin')
 });
 
+
 /* get admin main page */
 router.get('/', function(req, res, next) {
     MongoClient.connect(url, function(err, db) {
@@ -46,9 +47,35 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/detail', function(req, res, next) {
-    res.status(200).render('admin_detail', { result: "success" })
+router.get('/detail/:projectname', function(req, res, next) {
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var projectname = req.params.projectname;
+        var query = `{"name":"${projectname}"}`;
+        db.collection(PROJECT_COLLECTION_NAME).findOne(JSON.parse(query), function(err, document) {
+            if (err) throw err;
+                res.status(200).render('admin_detail', { document: document })
+             });
+        });    
 });
+
+router.get('/delete/:projectname', function(req, res, next) {
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var projectname = req.params.projectname;
+        var query = `{"name":"${projectname}"}`;
+        db.collection(PROJECT_COLLECTION_NAME).remove(JSON.parse(query), function(err, document) {
+            if (err) throw err;
+                res.redirect('/admin')
+
+             });
+        });    
+});
+
+router.get('/add', function(req, res, next) {  
+    res.status(200).render('admin_detail', { document: "" })
+});
+
 
 function createImages(req) {
     var images = new Array();

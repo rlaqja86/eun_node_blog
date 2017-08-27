@@ -1,7 +1,7 @@
 extends _layout
 block content
 	div.text-right.m-3
-		a.btn.btn-success.m-3(href="/admin/detail" role="button") 프로젝트 생성
+		a.btn.btn-success.m-3(href="/admin/add" role="button") 프로젝트 생성
 	div#head.panel-group(aria-multiselectable="true")
 		div.panel.panel-primary
 			div.panel-heading(role="tab")
@@ -28,7 +28,14 @@ block content
 										td
 											p #{project.description}
 										td
-											button.btn.btn-primary(href="/admin/detail" role="button") 상세
+											button.btn.btn-primary.getDetail(role="button" data-project="#{project.name}") 상세
+											button.btn.btn-danger.deleteDetail(role="button" data-project="#{project.name}") 삭제
+
+
+
+block footerScript
+	script(src='/js/adminList.js')
+
 
 
 
