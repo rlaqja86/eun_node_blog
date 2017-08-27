@@ -12,9 +12,9 @@ $(document).ready(function() {
                 var project = ``;
                 $.each(data, function(index, item) {
                     project += `<div id ='project'>`;
-                    project += `<img src='/uploads/${item.thumbnailImage}' alt='thumbnail image'>`;
+                    project += `<img src='/uploads/${item.images.image}' alt='thumbnail image'>`;
                     project += `<a href='/project/${item.name}'>`;
-                    project += `<div class='caption' data-image='${item.mainImage}' data-description='${item.description}'>${item.name}</div></a></div>`;
+                    project += `<div class='caption' data-image='${item.images.image}' data-description='${item.description}'>${item.name}</div></a></div>`;
                 })
                 $('#projects').html(project);
                 $('#pages>#page').css("font-size", "14px");

@@ -14,6 +14,6 @@ block content
           a(href="/project/#{item.name}")
             div.caption(data-image="#{item.images.image}" data-description="#{item.description}")= item.name
     div#pages
-      -for (var i = 1; i < pageTotal+1; i++)
+      -for (var i = 1; i < totalPageNum+1; i++)
         span#page(class="#{i}" data-page="#{i}" date-projectPart="#{projectPart}")= i
         

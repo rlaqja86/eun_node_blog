@@ -7,7 +7,7 @@ var express = require('express'),
     multer = require('multer'),
     ObjectID = require('mongodb').ObjectID,
     MongoClient = require('mongodb').MongoClient,
-    Image = require(path.join(__dirname, '../bin/domain/ProjectImage'));
+    Image = require(path.join(__dirname, '../bin/domain/ProjectImage')),
 
     PROJECT_COLLECTION_NAME = "projects",
     NUMBER_COUNT_COLLECTION_NAME = "numberCount",
