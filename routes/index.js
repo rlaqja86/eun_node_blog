@@ -13,7 +13,7 @@ var emptyObject = [{
     "images": {
         "name": "등록된 작품이 없습니다",
         "description": "작품을 등록해주세요",
-        "image": "thumbnail.jpg",
+        "image": "emptyImage.jpg",
         "isMain": "true"
     }
 }];
