@@ -1,27 +1,35 @@
 extends _layout
-block content  
-	.table-responsive
-		table.table.table-striped
-			thead
-				tr
-					th name		
-					th date
-					th site
-					th description
-					th detail
-			tbody
-				each project in projects
-					tr
-						td
-							p #{project.name}
-						td
-							p #{project.date}
-						td
-							p #{project.site}
-						td
-							p #{project.description}
-						td
-							button.btn-button-primary(type='button') detail
+block content
+	div.text-right.m-3
+		a.btn.btn-success.m-3(href="/admin/detail" role="button") 프로젝트 생성
+	div#head.panel-group(aria-multiselectable="true")
+		div.panel.panel-primary
+			div.panel-heading(role="tab")
+				h4.panel-title 프로젝트 관리
+			div.panel-body
+					.table-responsive
+						table.table.table-striped
+							thead
+								tr
+									th name		
+									th date
+									th site
+									th description
+									th detail
+							tbody
+								each project in projects
+									tr
+										td
+											p #{project.name}
+										td
+											p #{project.date}
+										td
+											p #{project.site}
+										td
+											p #{project.description}
+										td
+											button.btn.btn-primary(href="/admin/detail" role="button") 상세
+
 
 
 						

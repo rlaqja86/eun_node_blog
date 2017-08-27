@@ -1,17 +1,26 @@
 extends _layout
 
 block content
-    div#formgroup(data-value='["default-value"]')
-        form#myDrop.dropzone(method='POST' action='/admin/save' enctype='multipart/form-data' name="files")
-            label(for='projectname',class='control-label') 프로젝트명
-               input#image-input(type="text" name='projectname')
-            label(for='description',class='control-label') 설명
-               input#image-input(type="text" name='projectdescription')   
-            label(for='site',class='control-label') 장소
-                input#image-input(type="text" name='projectsite')
-            label(for='date',class='control-label') 날짜
-               input#image-input(type="text" name='projectdate')
-            button#sub-image-submit() 제출
+    div#head.panel-group(aria-multiselectable="true")
+        div.panel.panel-primary
+            div.panel-heading(role="tab")
+                h4.panel-title 프로젝트 관리
+            div.panel-body
+                div#formgroup(data-value='["default-value"]')
+                    div.control
+                        label(for='projectname',class='control-label') 프로젝트명
+                        input#image-name(type="text" name='projectname')
+                    div    
+                        label(for='description',class='control-label') 설명
+                        input#image-description(type="text" name='projectdescription')
+                    div       
+                        label(for='site',class='control-label') 장소
+                        input#image-site(type="text" name='projectsite')
+                    div    
+                        label(for='date',class='control-label') 날짜
+                        input#image-date(type="text" name='projectdate')
+                    form#myDrop.dropzone(method='POST' action='/admin/save' enctype='multipart/form-data' name="files")
+                    button#sub-image-submit() 제출
 
 block footerScript
     script(src='/scripts/dropzone/dist/dropzone.js')
