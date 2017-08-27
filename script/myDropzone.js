@@ -5,7 +5,11 @@ var myDropzone = new Dropzone('#myDrop', {
     method: "post",
     autoProcessQueue: false,
     paramName: "files",
-    maxFileSize: 5,
+    params  : {
+                sessionHash :  $('#image-name').val(),
+                path : 'fdhgfdhgfdhgdfhg'
+            },
+    maxFileSize: 10,
     maxFile: 10,
     parallelUploads: 10000,
     uploadMultiple: true,
@@ -18,24 +22,19 @@ var myDropzone = new Dropzone('#myDrop', {
             }
         });
         this.on('sending', function(file, xhr, formData){
-            var selector = (file.name.split('.')[0])
-            var inputForm_description = $('#' +selector + "_description");
-            var inputForm_name = $('#' + selector + "_name");
-            var mainImage = $('#' + selector + "_mainimage");   
+            var selector = specialCharRemove((file.name.split('.')[0]))
             
-            formData.append(file.name + "_name", inputForm_name.val());
-            formData.append(file.name + "_description", inputForm_description.val());
-            formData.append(file.name + "_mainimage", mainImage.is(':checked'))     
+            formData.append(file.name + "_name",  $(`#${selector}_name`).val());
+            formData.append(file.name + "_description", $(`#${selector}_description`).val());
+            formData.append(file.name + "_mainimage", $(`#${selector}_mainimage`).is(':checked'));     
+
+            formData.append("projectname", $('#image-name').val());     
+            formData.append("projectdescription", $('#image-description').val());     
+            formData.append("projectsite", $('#image-site').val());     
+            formData.append("projectdate", $('#image-date').val());     
         });
     }
 });
-
-function storeFileNames(selector) {
-    var formGroup = $("#formgroup");
-    var ids = formGroup.data('value');
-    ids.push(selector)
-    formGroup.data('value', ids);
-}
 
 function checkDuplicateFile(dropzone, file) {
     if (dropzone.files.length) {
@@ -55,14 +54,19 @@ function checkDuplicateFile(dropzone, file) {
 function drawAdditionalInput(selector) {
     selector = specialCharRemove(selector);
     var id = '#' + selector;
-    $(id).append(`<label> project description <input id="${selector}_description" type=text name="description">`)
-    $(id).append(`<label> project name <input id="${selector}_name" type=text name="date">`)
-    $(id).append(`<label> main image <input id="${selector}_mainimage" class="main-image-checkbox" type=checkbox name="mainimage">`)
+    $(id).append(`<label> 이미지명 <input id="${selector}_name" type=text name="date">`)
+    $(id).append(`<label> 이미지 설명 <input id="${selector}_description" type=text name="description">`)
+    $(id).append(`<label> Main 이미지 설정 <input id="${selector}_mainimage" class="main-image-checkbox" type=checkbox name="mainimage">`
+)
     var inputBox = $('#' + selector + '_mainimage');
     inputBox.click(function() {
         $('.main-image-checkbox').prop('checked', false);
         inputBox.prop('checked', true);
     });
+
+    if($('.main-image-checkbox').length < 2) {
+        $('.main-image-checkbox').attr('checked',true);
+    }
 }
 
 function specialCharRemove(selector) {

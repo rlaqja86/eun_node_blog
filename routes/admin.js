@@ -67,13 +67,12 @@ function createImages(req) {
 
 function createProject(req) {
     var project = require('../bin/domain/ProjectEntity');
-
     project._id = new ObjectID();
-    project.name = req.param('projectname');
+    project.name = req.param('projectname')[0];
     project.images = createImages(req);
-    project.site = req.param('projectsite');
-    project.date = req.param('projectdate');
-    project.description = req.param('projectdescription');
+    project.site = req.param('projectsite')[0];
+    project.date = req.param('projectdate')[0];
+    project.description = req.param('projectdescription')[0];
 
     return project;
 }
