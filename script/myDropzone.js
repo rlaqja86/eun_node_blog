@@ -54,15 +54,19 @@ function checkDuplicateFile(dropzone, file) {
 function drawAdditionalInput(selector) {
     selector = specialCharRemove(selector);
     var id = '#' + selector;
-    $(id).append(`<label> project description <input id="${selector}_description" type=text name="description">`)
-    $(id).append(`<label> project name <input id="${selector}_name" type=text name="date">`)
-    $(id).append(`<label> main image <input id="${selector}_mainimage" class="main-image-checkbox" type=checkbox name="mainimage">`
+    $(id).append(`<label> 이미지명 <input id="${selector}_name" type=text name="date">`)
+    $(id).append(`<label> 이미지 설명 <input id="${selector}_description" type=text name="description">`)
+    $(id).append(`<label> Main 이미지 설정 <input id="${selector}_mainimage" class="main-image-checkbox" type=checkbox name="mainimage">`
 )
     var inputBox = $('#' + selector + '_mainimage');
     inputBox.click(function() {
         $('.main-image-checkbox').prop('checked', false);
         inputBox.prop('checked', true);
     });
+
+    if($('.main-image-checkbox').length < 2) {
+        $('.main-image-checkbox').attr('checked',true);
+    }
 }
 
 function specialCharRemove(selector) {
