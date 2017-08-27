@@ -9,16 +9,16 @@ block content
                 div#formgroup(data-value='["default-value"]')
                     div.control
                         label.control-label(for='projectname') 프로젝트명
-                        input#image-name(type="text" name='projectname')
+                        input#image-name(type="text" name='projectname' value=document.name)
                     div    
                         label.control-label(for='description') 설명
-                        input#image-description(type="text" name='projectdescription')
+                        input#image-description(type="text" name='projectdescription' value=document.description)
                     div       
                         label(for='site',class='control-label') 장소
-                        input#image-site(type="text" name='projectsite')
+                        input#image-site(type="text" name='projectsite' value=document.site)
                     div    
                         label(for='date',class='control-label') 날짜
-                        input#image-date(type="date" name='projectdate')
+                        input#image-date(type="date" name='projectdate' value=document.date)
                     form#myDrop.dropzone(method='POST' action='/admin/save' enctype='multipart/form-data' name="files")
                     button#sub-image-submit() 제출
 
