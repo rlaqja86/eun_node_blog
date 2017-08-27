@@ -5,5 +5,5 @@ block content
     h3= title
     div#slideWrap
         div#slide.fotorama(data-allowfullscreen="true" data-fit="cover" data-keyboard="true" data-nav="thumbs" data-width="100%" data-ratio="16/9" data-max-width="100%")
-            each item in object
-                img(src="/uploads/#{item.image}" data-caption="#{item.name}<br>#{item.description}<br>#{date}" alt="#{item.name}")
+            each item in images
+                img(src="/uploads/#{item.image}" data-caption="#{item.name}<br>#{item.description}" alt="#{item.name}")

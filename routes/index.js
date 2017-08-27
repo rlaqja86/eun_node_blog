@@ -14,7 +14,7 @@ var emptyObject = [{
         "name": "등록된 작품이 없습니다",
         "description": "작품을 등록해주세요",
         "image": "thumbnail.jpg",
-        "isMain": true
+        "isMain": "true"
     }
 }];
 
@@ -34,20 +34,22 @@ router.get('/', function(req, res, next) {
                 totalProjectNum = result;
                 totalPageNum = Math.ceil(totalProjectNum / PROJECT_PART);
 
-                console.log(totalProjectNum);
-                console.log(totalPageNum);
-            });
-            db.collection(CATEGORY_COLLECTION_NAME).aggregate([{ $unwind: "$images" }, { $match: { "images.isMain": true } }, { $sort: { "date": -1, "name": 1 } }]).limit(PROJECT_PART).toArray(function(err, result) {
+                console.log("토탈프로젝트수" + totalProjectNum);
+                console.log("토탈페이지수" + totalPageNum);
+
                 if (totalProjectNum != 0) {
-                    console.log(result);
-                    res.render('index', { title: "eunhye", object: result, totalPageNum: totalPageNum });
+                    db.collection(CATEGORY_COLLECTION_NAME).aggregate([{ $unwind: "$images" }, { $match: { "images.isMain": "true" } }, { $sort: { "date": -1, "name": 1 } }]).limit(PROJECT_PART).toArray(function(err, result) {
+                        console.log(result);
+                        res.render('index', { title: "eunhye", object: result, totalPageNum: totalPageNum });
+                    });
                 } 
                 else {
-                    console.log(emptyObject.images);
+                    console.log(emptyObject[0].images);
                     res.render('index', { title: "eunhye", object: emptyObject, totalPageNum: totalPageNum });
                 }
                 db.close();
             });
+
         });
     } catch (ex) {
         console.log(ex);
@@ -61,7 +63,7 @@ router.get('/page/:page', function(req, res, next) {
         try {
             MongoClient.connect(DB_URL, function(err, db) {
 
-                db.collection(CATEGORY_COLLECTION_NAME).aggregate([{ $unwind: "$images" }, { $match: { "images.isMain": true } }, { $sort: { "date": -1, "name": 1 } }]).skip((page - 1) * PROJECT_PART).limit(PROJECT_PART).toArray(function(err, result) {
+                db.collection(CATEGORY_COLLECTION_NAME).aggregate([{ $unwind: "$images" }, { $match: { "images.isMain": "true" } }, { $sort: { "date": -1, "name": 1 } }]).skip((page - 1) * PROJECT_PART).limit(PROJECT_PART).toArray(function(err, result) {
                     res.json(result);
                     db.close(); 
                 });

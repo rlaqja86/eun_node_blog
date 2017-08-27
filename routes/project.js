@@ -21,7 +21,7 @@ router.get('/:projectName', function(req, res, next) {
         MongoClient.connect(DB_URL, function(err, db) {
             db.collection(CATEGORY_COLLECTION_NAME).find({ 'name': projectName }).toArray(function(err, result) {
                 if (result.length != 0) {
-                    res.render('project', { title: result[0].name, object: result[0].images, date: result[0].date });
+                    res.render('project', { title: result[0].name, images: result[0].images, date: result[0].date });
                 } else {
                     res.redirect('/');
                 }
