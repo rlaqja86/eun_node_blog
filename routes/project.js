@@ -36,6 +36,9 @@ router.get('/:projectName', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
             db.collection(CATEGORY_COLLECTION_NAME).find({ 'name': projectName }).toArray(function(err, result) {
+                console.log(projectName);
+                console.log(result);
+
                 if (result.length != 0) {
                     res.render('project', { project: result[0] });
                 } else {
