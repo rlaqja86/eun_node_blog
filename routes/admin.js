@@ -30,9 +30,12 @@ router.post('/save', upload.any(), function(req, res, next) {
     var project = createProject(req);
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        db.collection(PROJECT_COLLECTION_NAME).save(project)
+        db.collection(PROJECT_COLLECTION_NAME).save(project, function(err, document) {
+            if(err) throw err
+                res.redirect('/admin')
+        });
+        db.close();
     });
-    res.redirect('/admin')
 });
 
 
@@ -67,7 +70,6 @@ router.get('/delete/:projectname', function(req, res, next) {
         db.collection(PROJECT_COLLECTION_NAME).remove(JSON.parse(query), function(err, document) {
             if (err) throw err;
                 res.redirect('/admin')
-
              });
         });    
 });
@@ -83,10 +85,10 @@ function createImages(req) {
         var name = req.files[index].originalname,
             image = new Image();
         image._id = new ObjectID();
-        image.name = req.param(name + '_name');
-        image.description = req.param(name + '_description');
+        image.name = req.body.name + '_name';
+        image.description = req.body.name + '_description';
         image.image = req.files[index].filename;
-        image.isMain = req.param(name + '_mainimage');
+        image.isMain = req.body.name + '_mainimage';
         images.push(image);
     }
     return images;
@@ -95,11 +97,11 @@ function createImages(req) {
 function createProject(req) {
     var project = require('../bin/domain/ProjectEntity');
     project._id = new ObjectID();
-    project.name = req.param('projectname')[0];
+    project.name = req.body.projectname;
     project.images = createImages(req);
-    project.site = req.param('projectsite')[0];
-    project.date = req.param('projectdate')[0];
-    project.description = req.param('projectdescription')[0];
+    project.site = req.body.projectsite;
+    project.date = req.body.projectdate;
+    project.description = req.body.projectdescription;
 
     return project;
 }

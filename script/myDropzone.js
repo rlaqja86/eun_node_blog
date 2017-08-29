@@ -5,10 +5,6 @@ var myDropzone = new Dropzone('#myDrop', {
     method: "post",
     autoProcessQueue: false,
     paramName: "files",
-    params  : {
-                sessionHash :  $('#image-name').val(),
-                path : 'fdhgfdhgfdhgdfhg'
-            },
     maxFileSize: 10,
     maxFile: 10,
     parallelUploads: 10000,
@@ -28,10 +24,10 @@ var myDropzone = new Dropzone('#myDrop', {
             formData.append(file.name + "_description", $(`#${selector}_description`).val());
             formData.append(file.name + "_mainimage", $(`#${selector}_mainimage`).is(':checked'));     
 
-            formData.append("projectname", $('#image-name').val());     
-            formData.append("projectdescription", $('#image-description').val());     
-            formData.append("projectsite", $('#image-site').val());     
-            formData.append("projectdate", $('#image-date').val());     
+            formData.set("projectname", $('#image-name').val());     
+            formData.set("projectdescription", $('#image-description').val());     
+            formData.set("projectsite", $('#image-site').val());     
+            formData.set("projectdate", $('#image-date').val());     
         });
     }
 });
