@@ -5,7 +5,7 @@ var myDropzone = new Dropzone('#myDrop', {
     method: "post",
     autoProcessQueue: false,
     paramName: "files",
-    maxFileSize: 10,
+    maxFileSize: 100,
     maxFile: 10,
     parallelUploads: 10000,
     uploadMultiple: true,
@@ -19,10 +19,10 @@ var myDropzone = new Dropzone('#myDrop', {
         });
         this.on('sending', function(file, xhr, formData){
             var selector = specialCharRemove((file.name.split('.')[0]))
-            
-            formData.append(file.name + "_name",  $(`#${selector}_name`).val());
-            formData.append(file.name + "_description", $(`#${selector}_description`).val());
-            formData.append(file.name + "_mainimage", $(`#${selector}_mainimage`).is(':checked'));     
+
+            formData.append("imageName",  $(`#${selector}_name`).val());
+            formData.append("imageDescription", $(`#${selector}_description`).val());
+            formData.append("isMainImage", $(`#${selector}_mainimage`).is(':checked'));     
 
             formData.set("projectname", $('#image-name').val());     
             formData.set("projectdescription", $('#image-description').val());     

@@ -10,7 +10,7 @@ var express = require('express'),
     Image = require(path.join(__dirname, '../bin/domain/ProjectImage')),
 
     PROJECT_COLLECTION_NAME = "projects",
-    NUMBER_COUNT_COLLECTION_NAME = "numberCount",
+    NUMBER_COUNT_COLLECTION_NAME = "numberCount", //todo id 조회를 위한 컬렉션 추가
     FIRST_INDEX = 0,
 
     _storage = multer.diskStorage({
@@ -37,7 +37,6 @@ router.post('/save', upload.any(), function(req, res, next) {
         db.close();
     });
 });
-
 
 /* get admin main page */
 router.get('/', function(req, res, next) {
@@ -85,10 +84,11 @@ function createImages(req) {
         var name = req.files[index].originalname,
             image = new Image();
         image._id = new ObjectID();
-        image.name = req.body.name + '_name';
-        image.description = req.body.name + '_description';
+
+        image.name = req.body.imageName;
+        image.description = req.body.imageDescription;
         image.image = req.files[index].filename;
-        image.isMain = req.body.name + '_mainimage';
+        image.isMain = req.body.isMainImage
         images.push(image);
     }
     return images;
