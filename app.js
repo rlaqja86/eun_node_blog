@@ -26,6 +26,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+//directory path.
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/')));
 app.use('/bootstrap/', express.static(path.join(__dirname, 'node_modules/jade-bootstrap')))
