@@ -19,15 +19,20 @@ var myDropzone = new Dropzone('#myDrop', {
         });
         this.on('sending', function(file, xhr, formData){
             var selector = specialCharRemove((file.name.split('.')[0]))
+            var image = new Image();
 
-            formData.append("imageName",  $(`#${selector}_name`).val());
-            formData.append("imageDescription", $(`#${selector}_description`).val());
-            formData.append("isMainImage", $(`#${selector}_mainimage`).is(':checked'));     
+            image.name = $(`#${selector}_name`).val();
+            image.description = $(`textarea#${selector}_description`).val();
+            image.isMain =  $(`#${selector}_mainimage`).is(':checked');
 
-            formData.set("projectname", $('#image-name').val());     
-            formData.set("projectdescription", $('#image-description').val());     
-            formData.set("projectsite", $('#image-site').val());     
-            formData.set("projectdate", $('#image-date').val());     
+            formData.append(`images`, JSON.stringify(image));     
+            
+            formData.set("fileNameSelector", selector);
+            formData.set("projectname", $('#project-name').val());     
+            formData.set("projectdescription", $('textarea#project-description').val());     
+            formData.set("projectsite", $('#project-site').val());     
+            formData.set("projectdate", $('#project-date').val());  
+            
         });
     }
 });
@@ -50,19 +55,62 @@ function checkDuplicateFile(dropzone, file) {
 function drawAdditionalInput(selector) {
     selector = specialCharRemove(selector);
     var id = '#' + selector;
-    $(id).append(`<label> 이미지명 <input id="${selector}_name" type=text name="date">`)
-    $(id).append(`<label> 이미지 설명 <input id="${selector}_description" type=text name="description">`)
-    $(id).append(`<label> Main 이미지 설정 <input id="${selector}_mainimage" class="main-image-checkbox" type=checkbox name="mainimage">`
-)
+
+    $(id).append(` <div class="panel panel-primary">
+            <div role="tab" class="panel-heading">
+              <h4 class="image-header panel-title">이미지 상세 정보 입력</h4>
+              <button id="${selector}-delete" class="image-delete btn btn-danger"> 삭제 </button>
+            </div>
+            <div class="panel-body">
+              <div id="pannelImage-${selector}" class="pannel-preview-image">
+              </div>
+              <div class="pannel-preview-input">
+                    <div class="control-pannel-image-label">
+                        <label for="projectname" class="control-label">이미지명</label>
+                    </div>
+                    <div class="control-pannel-image-value">
+                        <input id="${selector}_name" type=text name="date">
+                    </div>
+                    <div class="control-pannel-image-label">
+                        <label for="description" class="control-label">설명</label>
+                    </div>
+                    <div class="control-pannel-image-value">    
+                        <textarea id="${selector}_description" name="imageDescription" style="width:250px;height:100px;"></textarea>
+                    </div>
+                   <div class="control-pannel-image-label">
+                        <label for="site" class="control-label">메인</label>
+                   </div>
+                    <div class="control-pannel-image-value">
+                        <input id="${selector}_mainimage" class="form-check-input " type=checkbox name="mainimage">
+                    </div>
+                </div>
+            </div>`)
+
     var inputBox = $('#' + selector + '_mainimage');
     inputBox.click(function() {
         $('.main-image-checkbox').prop('checked', false);
         inputBox.prop('checked', true);
     });
 
-    if($('.main-image-checkbox').length < 2) {
-        $('.main-image-checkbox').attr('checked',true);
-    }
+    if($('.form-check-input').length < 2) {
+        $('.form-check-input ').attr('checked',true);
+    }   
+
+    replaceDefaultIdToUniqueId(selector);
+    appendImageAndProgressBarToUniqueId(selector);
+
+}
+
+function replaceDefaultIdToUniqueId(selector) {
+    $('#dz-image-id').attr('id', `dz-image-id-${selector}`);
+    $('#dz-progress-id').attr('id', `dz-progress-id-${selector}`);
+}
+
+function appendImageAndProgressBarToUniqueId(selector) {
+    console.log(selector)
+    $(`#dz-image-id-${selector}`).appendTo(`#pannelImage-${selector}`);
+    $(`#dz-progress-id-${selector}`).appendTo(`#dz-image-id-${selector}`);
+    
 }
 
 function specialCharRemove(selector) {
@@ -73,6 +121,16 @@ function specialCharRemove(selector) {
     return selector
 }
 
-$('#sub-image-submit').click(function() {
+$('#sub-project-submit').on('click', function() {
     myDropzone.processQueue();
 });
+
+$('.image-delete').on('click', function() {
+   console.log('heee')
+})
+
+var Image = function () {
+    var name;
+    var description;
+    var isMain;
+}

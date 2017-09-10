@@ -7,20 +7,28 @@ block content
                 h4.panel-title 프로젝트 관리
             div.panel-body
                 div#formgroup(data-value='["default-value"]')
-                    div.control
-                        label.control-label(for='projectname') 프로젝트명
-                        input#image-name(type="text" name='projectname' value=document.name)
-                    div    
-                        label.control-label(for='description') 설명
-                        input#image-description(type="text" name='projectdescription' value=document.description)
-                    div       
-                        label(for='site',class='control-label') 장소
-                        input#image-site(type="text" name='projectsite' value=document.site)
-                    div    
-                        label(for='date',class='control-label') 날짜
-                        input#image-date(type="date" name='projectdate' value=document.date)
+                    div.control-pannel
+                        div.control-pannel-label
+                            label.control-label(for='projectname') 프로젝트명
+                        div.control-pannel-value
+                            input#project-name(type="text" name='projectname' value=document.name)
+                    div.control-pannel
+                        div.control-pannel-label                  
+                            label(for='site',class='control-label') 장소
+                        div.control-pannel-value
+                            input#project-site(type="text" name='projectsite' value=document.site)
+                    div.control-pannel
+                        div.control-pannel-label
+                            label(for='date',class='control-label') 날짜
+                        div.control-pannel-value
+                            input#project-date(type="date" name='projectdate' value=document.date)
+                    div.control-pannel
+                        div.control-pannel-label
+                            label.control-label(for='description') 설명
+                        div.control-pannel-value
+                            textarea#project-description(name='projectdescription' value=document.description)
                     form#myDrop.dropzone(method='POST' action='/admin/save' enctype='multipart/form-data' name="files")
-                    button#sub-image-submit() 제출
+                    button#sub-project-submit.btn.btn-primary() 제출
 
 block footerScript
     script(src='/scripts/dropzone/dist/dropzone.js')
