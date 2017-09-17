@@ -132,23 +132,22 @@ header {
     float: right;
     width: 23%;
     height: 468px;
+    overflow-y: auto;
 }
 
 #projects {
     float: right;
-    width: 100%;
-    height: 438px;
-    overflow-y: auto;
+    width: 248px;
 }
 
 #projects>#project {
     float: left;
     position: relative;
-    width: 49%;
+    width: 120px;
     height: 69px;
     padding: 10px;
-    margin-left: 1%;
-    margin-bottom: 1.2%;
+    margin-left: 4px;
+    margin-bottom: 4px;
 }
 
 #projects>#project>img {
@@ -159,24 +158,15 @@ header {
     left: 0;
 }
 
-#pages {
-    height: 30px;
+#more {
+    width: 244px;
+    background-color: #002e43;
+    color: white;
     clear: both;
     text-align: center;
-    padding: 5px;
-}
-
-#pages>#page {
-    margin-left: 3px;
-    margin-right: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
-    font-size: 14px;
+    padding: 10px;
+    margin-left: 4px;
     cursor: pointer;
-}
-
-#pages>#page:first-child {
-    font-size: 20px;
 }
 
 footer {
@@ -343,7 +333,7 @@ img.about {
 }
 
 .control-pannel {
-    margin :1px;
+    margin: 1px;
 }
 
 .control-pannel-label {
@@ -367,7 +357,7 @@ img.about {
 
 .pannel-preview-image {
     display: inline-block;
-    width :150px;
+    width: 150px;
 }
 
 .pannel-preview-input {
@@ -407,4 +397,10 @@ img.about {
 
 #delete-image-container {
     position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
 }

@@ -7,7 +7,7 @@ var router = express.Router();
 var DB_CONSTANT = require(path.join(__dirname, '../bin/domain/DB_CONSTANT'));
 var DB_URL = DB_CONSTANT.url;
 var PROJECT_COLLECTION_NAME = DB_CONSTANT.mainCollection;
-var PROJECT_PART = 2; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
+var PROJECT_PART = 4; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
 var totalPageNum = 1;
 
 var EMPTY_PROJECT = [{
@@ -19,7 +19,7 @@ var EMPTY_PROJECT = [{
         "name": "작품명",
         "description": "작품설명",
         "image": "emptyImage.jpg",
-        "isMain": "true"
+        "isMain": true
     }
 }];
 
@@ -54,6 +54,135 @@ router.get('/resetDB', function(req, res, next) {
             db.collection(PROJECT_COLLECTION_NAME).drop();
             db.close(); 
             res.redirect('/');
+        });
+    } catch (ex) {
+        console.log(ex);
+    }
+});
+
+router.get('/sampleDB', function(req, res, next) {
+    try {
+        MongoClient.connect(DB_URL, function(err, db) {
+            db.collection(PROJECT_COLLECTION_NAME).insert(
+                [{
+                    "name": "sample1",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플1",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample1.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample2.jpg",
+                        "isMain": false
+                    }]
+                }, {
+                    "name": "sample2",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플2",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample2.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample3.jpg",
+                        "isMain": false
+                    }]
+                }, {
+                    "name": "sample3",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플3",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample3.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample4.jpg",
+                        "isMain": false
+                    }]
+                }, {
+                    "name": "sample4",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플3",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample4.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample5.jpg",
+                        "isMain": false
+                    }]
+                }, {
+                    "name": "sample5",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플5",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample5.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample6.jpg",
+                        "isMain": false
+                    }]
+                }, {
+                    "name": "sample6",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플6",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample6.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample7.jpg",
+                        "isMain": false
+                    }]
+                }, {
+                    "name": "sample7",
+                    "date": "2017-01-01",
+                    "site": "대한민국 서울",
+                    "description": "샘플7",
+                    "images": [{
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample7.jpg",
+                        "isMain": true
+                    }, {
+                        "name": "작품명",
+                        "description": "작품설명",
+                        "image": "sample1.jpg",
+                        "isMain": false
+                    }]
+                }]
+            );
+            db.close(); 
+
+            setTimeout(function() {
+                res.redirect('/');
+            }, 500);
         });
     } catch (ex) {
         console.log(ex);
