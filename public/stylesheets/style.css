@@ -325,3 +325,86 @@ img.about {
     font-weight: bold;
     background: rgba(0, 0, 0, 0.70);
 }
+
+.pannel-preview-image {
+    vertical-align: middle;
+    display: inline-block;
+    width: 150px;
+}
+
+#image-description {
+    width: 500px;
+    height: 150px;
+}
+
+#project-description {
+    width: 500px;
+    height: 150px;
+}
+
+.control-pannel {
+    margin :1px;
+}
+
+.control-pannel-label {
+    width: 70px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.control-pannel-value {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#image-name {
+    width: 400px;
+}
+
+#image-site {
+    width: 400px;
+}
+
+.pannel-preview-image {
+    display: inline-block;
+    width :150px;
+}
+
+.pannel-preview-input {
+    display: inline-block;
+    width: 700px;
+}
+
+.control-pannel-image-label {
+    width: 30px;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 1px;
+}
+
+.control-pannel-image-value {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 1px;
+}
+
+.form-check-input {
+    width: 40px;
+    height: 40px;
+}
+
+.image-delete {
+    position: absolute;
+    display: inline-block;
+    right: 30px;
+    top: 95px;
+    vertical-align: middle;
+}
+
+.image-header {
+    display: inline-block;
+}
+
+#delete-image-container {
+    position: relative;
+}

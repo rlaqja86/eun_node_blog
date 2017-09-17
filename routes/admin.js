@@ -80,15 +80,17 @@ router.get('/add', function(req, res, next) {
 
 function createImages(req) {
     var images = new Array();
-    for (var index = 0; index < req.files.length; index++) {
-        var name = req.files[index].originalname,
+    for (var index = 0; index < req.body.images.length; index++) {
+        var name = req.body.fileNameSelector,
+            imageInstance = JSON.parse(req.body.images[index]),
             image = new Image();
+    
         image._id = new ObjectID();
-
-        image.name = req.body.imageName;
-        image.description = req.body.imageDescription;
+        image.name = imageInstance.name;
+        image.description = imageInstance.description;
         image.image = req.files[index].filename;
-        image.isMain = req.body.isMainImage
+        image.isMain = imageInstance.isMain;
+
         images.push(image);
     }
     return images;
@@ -104,6 +106,14 @@ function createProject(req) {
     project.description = req.body.projectdescription;
 
     return project;
+}
+
+function specialCharRemove(selector) {
+    var pattern = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/gi;
+    if (pattern.test(selector)) {
+        selector = selector.replace(pattern, "");
+    }
+    return selector
 }
 
 module.exports = router;
