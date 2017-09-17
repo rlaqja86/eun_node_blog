@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "start": "supervisor ./bin/www",
-        "test": "mongod.exe --dbpath C:/Users/daewoo/dev/mongoDB/data"
+        "test": "mongod.exe --dbpath C:/Users/daewoo/dev/mongoDB/data",
+        "stop": "Taskkill /IM node.exe /F"
     },
     "dependencies": {
         "body-parser": "~1.17.1",

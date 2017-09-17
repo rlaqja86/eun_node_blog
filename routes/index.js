@@ -8,8 +8,7 @@ var DB_CONSTANT = require(path.join(__dirname, '../bin/domain/DB_CONSTANT'));
 var DB_URL = DB_CONSTANT.url;
 var PROJECT_COLLECTION_NAME = DB_CONSTANT.mainCollection;
 var PROJECT_PART = 2; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
-var totalProjectNum = 0;
-var totalPageNum = 0;
+var totalPageNum = 1;
 
 var EMPTY_PROJECT = [{
     "name": "등록된 프로젝트가 없습니다",
@@ -29,8 +28,7 @@ var EMPTY_PROJECT = [{
 router.get('/', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
-            db.collection(PROJECT_COLLECTION_NAME).count(function(err, count) {
-                totalProjectNum = count;
+            db.collection(PROJECT_COLLECTION_NAME).count(function(err, totalProjectNum) {
                 totalPageNum = Math.ceil(totalProjectNum / PROJECT_PART);
                 db.close();
                 var result = EMPTY_PROJECT;
@@ -70,7 +68,7 @@ router.get('/page/:page', function(req, res, next) {
             MongoClient.connect(DB_URL, function(err, db) {
                 db.collection(PROJECT_COLLECTION_NAME).aggregate([
                     { $unwind: "$images" },
-                    { $match: { "images.isMain": "true" } },
+                    { $match: { "images.isMain": true } },
                     { $sort: { "date": -1, "name": 1 } }
                 ]).skip((page - 1) * PROJECT_PART).limit(PROJECT_PART).toArray(function(err, result) {
                     res.json(result);
