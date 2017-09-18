@@ -10,7 +10,7 @@ var express = require('express'),
     Image = require(path.join(__dirname, '../bin/domain/ProjectImage')),
 
     PROJECT_COLLECTION_NAME = "projects",
-    NUMBER_COUNT_COLLECTION_NAME = "numberCount", //todo id 조회를 위한 컬렉션 추가
+    NUMBER_COUNT_COLLECTION_NAME = "counters", //todo id 조회를 위한 컬렉션 추가
     FIRST_INDEX = 0,
 
     _storage = multer.diskStorage({
@@ -25,7 +25,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     fs = require('fs');
 
-/* save category. */
+/* save project. */
 router.post('/save', upload.any(), function(req, res, next) {
     var project = createProject(req);
     MongoClient.connect(url, function(err, db) {
@@ -79,32 +79,54 @@ router.get('/add', function(req, res, next) {
 
 
 function createImages(req) {
-    var images = new Array();
-    for (var index = 0; index < req.body.images.length; index++) {
-        var name = req.body.fileNameSelector,
+    try {
+        var images = new Array();
+        if (req.body.images instanceof Array ) {
+          for (var index = 0; index < req.body.images.length; index ++) {
             imageInstance = JSON.parse(req.body.images[index]),
-            image = new Image();
-    
-        image._id = new ObjectID();
-        image.name = imageInstance.name;
-        image.description = imageInstance.description;
-        image.image = req.files[index].filename;
-        image.isMain = imageInstance.isMain;
-
-        images.push(image);
+            images.push(
+                extractImage(new ObjectID, 
+                    imageInstance.name, 
+                    imageInstance.description, 
+                    req.files[index].filename, 
+                    imageInstance.isMain));
+                    return images;
+        }
+    } 
+     var imageInstance = JSON.parse(req.body.images);
+     images.push(
+         extractImage(
+                new ObjectID, 
+                imageInstance.name, 
+                imageInstance.description, 
+                req.files.filename, 
+                imageInstance.isMain));
+                return images;
+} catch (e) {
+        console.log(e)
     }
-    return images;
+}
+
+function extractImage(id, name, description, filename, isMain) {
+    image = new Image();
+    image._id = id;
+    image.name = name;
+    image.description = description;
+    image.image = filename;
+    image.isMain = isMain;
+
+    return image;
 }
 
 function createProject(req) {
     var project = require('../bin/domain/ProjectEntity');
+    console.log('SEQEW : ' + getNextSequence('projectId'))
     project._id = new ObjectID();
     project.name = req.body.projectname;
-    project.images = createImages(req);
     project.site = req.body.projectsite;
     project.date = req.body.projectdate;
     project.description = req.body.projectdescription;
-
+    project.images = createImages(req); 
     return project;
 }
 
@@ -115,5 +137,26 @@ function specialCharRemove(selector) {
     }
     return selector
 }
+
+function getNextSequence(name) {
+    var updatedProjectId;
+    MongoClient.connect(url, function(err, db) {
+        if (err) 
+            console.log("error occured at getNextSequenc : " + err);{
+        }
+        db.collection(NUMBER_COUNT_COLLECTION_NAME).findAndModify( 
+            {"_id" : name},
+            [['_id','asc']],
+            { $inc: { seq: 1 } },
+            { 
+                new: true, 
+                upsert: true
+            }, function(err, doc) {
+               return doc.value.seq;
+            });
+        db.close();
+    });
+}
+
 
 module.exports = router;
