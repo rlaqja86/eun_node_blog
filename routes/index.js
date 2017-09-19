@@ -7,7 +7,7 @@ var router = express.Router();
 var DB_CONSTANT = require(path.join(__dirname, '../bin/domain/DB_CONSTANT'));
 var DB_URL = DB_CONSTANT.url;
 var PROJECT_COLLECTION_NAME = DB_CONSTANT.mainCollection;
-var PROJECT_PART = 4; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
+var PROJECT_PART = 6; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
 var totalPageNum = 1;
 
 var EMPTY_PROJECT = [{

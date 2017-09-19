@@ -114,8 +114,8 @@ header {
 #projectPreview {
     float: left;
     clear: both;
-    width: 77%;
-    height: 468px;
+    width: 830px;
+    height: 470px;
     position: relative;
 }
 
@@ -130,14 +130,14 @@ header {
 
 #projectsWrap {
     float: right;
-    width: 23%;
-    height: 468px;
+    width: 250px;
+    height: 470px;
     overflow-y: auto;
 }
 
 #projects {
     float: right;
-    width: 248px;
+    width: 250px;
 }
 
 #projects>#project {
@@ -146,8 +146,13 @@ header {
     width: 120px;
     height: 69px;
     padding: 10px;
-    margin-left: 4px;
-    margin-bottom: 4px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#projects>#project:nth-of-type(1),
+#projects>#project:nth-of-type(2) {
+    margin-top: 0px;
 }
 
 #projects>#project>img {
@@ -159,13 +164,17 @@ header {
 }
 
 #more {
-    width: 244px;
+    width: 246px;
     background-color: #002e43;
     color: white;
+    font-size: 20px;
+    font-weight: bold;
     clear: both;
+    float: right;
     text-align: center;
-    padding: 10px;
-    margin-left: 4px;
+    padding: 7px;
+    margin-left: 5px;
+    margin-top: 5px;
     cursor: pointer;
 }
 
@@ -310,7 +319,7 @@ img.about {
 
 #projectPreview>a>div.caption:hover,
 #projects>#project>a>div.caption:hover {
-    color: #ffca28;
+    color: #FFCA28;
     font-size: 16px;
     font-weight: bold;
     background: rgba(0, 0, 0, 0.70);
