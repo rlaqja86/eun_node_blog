@@ -9,6 +9,7 @@ var express = require('express'),
     MongoClient = require('mongodb').MongoClient,
     Image = require(path.join(__dirname, '../bin/domain/ProjectImage')),
     idGenerator = require(path.join(__dirname, '../bin/domain/autoIncrement/idGenerator')),
+    autoIncrement = require("mongodb-autoincrement"),
 
     PROJECT_COLLECTION_NAME = "projects",
     NUMBER_COUNT_COLLECTION_NAME = "counters", //todo id 조회를 위한 컬렉션 추가
@@ -27,16 +28,22 @@ var express = require('express'),
     fs = require('fs');
 
 /* save project. */
-router.post('/save', upload.any(), function(req, res, next) {
-    var project = createProject(req);
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        db.collection(PROJECT_COLLECTION_NAME).save(project, function(err, document) {
-            if(err) throw err
-                res.redirect('/admin')
+router.post('/save', upload.any(), function(req, res, next) { 
+    try {
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            autoIncrement.getNextSequence(db, PROJECT_COLLECTION_NAME, function (err, autoIndex) {
+                var project = createProject(req, autoIndex);
+                db.collection(PROJECT_COLLECTION_NAME).save(project, function(err, document) {
+                    if(err) throw err
+                        res.redirect('/admin')
+                });
+                db.close();
+            });
         });
-        db.close();
-    });
+    } catch(e) {
+        console.log("save error : " + e);
+    }      
 });
 
 /* get admin main page */
@@ -54,9 +61,11 @@ router.get('/detail/:projectId', function(req, res, next) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var projectId = req.params.projectId;
-        var query = `{"projectId":"${projectId}"}`;
+        var query = `{"projectId":${projectId}}`;
         db.collection(PROJECT_COLLECTION_NAME).findOne(JSON.parse(query), function(err, document) {
             if (err) throw err;
+                console.log(query)
+                console.log(document)
                 res.status(200).render('admin_detail', { document: document })
              });
         });    
@@ -111,16 +120,11 @@ function extractImage(id, name, description, filename, isMain) {
     return image;
 }
 
-function createProject(req) {
+function createProject(req, autoIndex) {
+    console.log("AUTOINDEX : " + autoIncrement)
     var project = require('../bin/domain/ProjectEntity');
     var projectIdId;
-    idGenerator.getId(NUMBER_COUNT_COLLECTION_NAME, 'projectId').then(
-        function(item) {
-            project.projectId = item.value.seq;
-            projectIdId = item.value.seq;
-            console.log("AAAAA " + item.value.seq)
-        });
-    console.log("ProjectIDID : " + projectIdId)    
+    project.projectId = autoIndex;
     project._id = new ObjectID();        
     project.name = req.body.projectname;
     project.site = req.body.projectsite;
@@ -156,6 +160,4 @@ function getNextSequence(name) {
         db.close();
     });
 }
-
-
-module.exports = router;
+    module.exports = router;
