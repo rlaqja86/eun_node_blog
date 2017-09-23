@@ -1,5 +1,5 @@
 var ProjectEntity = function() {
-    var _id;
+    var projectId;
     var name;
     var date;
     var site;

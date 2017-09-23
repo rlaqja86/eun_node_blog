@@ -8,6 +8,7 @@ var express = require('express'),
     ObjectID = require('mongodb').ObjectID,
     MongoClient = require('mongodb').MongoClient,
     Image = require(path.join(__dirname, '../bin/domain/ProjectImage')),
+    idGenerator = require(path.join(__dirname, '../bin/domain/autoIncrement/idGenerator')),
 
     PROJECT_COLLECTION_NAME = "projects",
     NUMBER_COUNT_COLLECTION_NAME = "counters", //todo id 조회를 위한 컬렉션 추가
@@ -49,11 +50,11 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/detail/:projectname', function(req, res, next) {
+router.get('/detail/:projectId', function(req, res, next) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var projectname = req.params.projectname;
-        var query = `{"name":"${projectname}"}`;
+        var projectId = req.params.projectId;
+        var query = `{"projectId":"${projectId}"}`;
         db.collection(PROJECT_COLLECTION_NAME).findOne(JSON.parse(query), function(err, document) {
             if (err) throw err;
                 res.status(200).render('admin_detail', { document: document })
@@ -61,11 +62,12 @@ router.get('/detail/:projectname', function(req, res, next) {
         });    
 });
 
-router.get('/delete/:projectname', function(req, res, next) {
+router.get('/delete/:projectId', function(req, res, next) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var projectname = req.params.projectname;
-        var query = `{"name":"${projectname}"}`;
+        var projectId = req.params.projectId;
+        var query = `{"projectId":${projectId}}`;
+        console.log(query)
         db.collection(PROJECT_COLLECTION_NAME).remove(JSON.parse(query), function(err, document) {
             if (err) throw err;
                 res.redirect('/admin')
@@ -83,27 +85,18 @@ function createImages(req) {
         var images = new Array();
         if (req.body.images instanceof Array ) {
           for (var index = 0; index < req.body.images.length; index ++) {
-            imageInstance = JSON.parse(req.body.images[index]),
+            var entity = JSON.parse(req.body.images[index]);
             images.push(
-                extractImage(new ObjectID, 
-                    imageInstance.name, 
-                    imageInstance.description, 
-                    req.files[index].filename, 
-                    imageInstance.isMain));
-                    return images;
-        }
-    } 
-     var imageInstance = JSON.parse(req.body.images);
-     images.push(
-         extractImage(
-                new ObjectID, 
-                imageInstance.name, 
-                imageInstance.description, 
-                req.files.filename, 
-                imageInstance.isMain));
-                return images;
-} catch (e) {
-        console.log(e)
+                extractImage(new ObjectID(), entity.name, entity.description, req.files[index].filename, entity.isMain));
+            }
+            return images;
+        } else {
+            var entity = JSON.parse(req.body.images);
+            images.push(extractImage(new ObjectID(), entity.name, entity.description, req.files[0].filename, entity.isMain));
+            return images;
+        } 
+    } catch (e) {
+        console.log("error occured at createImage : " + e);
     }
 }
 
@@ -120,8 +113,15 @@ function extractImage(id, name, description, filename, isMain) {
 
 function createProject(req) {
     var project = require('../bin/domain/ProjectEntity');
-    console.log('SEQEW : ' + getNextSequence('projectId'))
-    project._id = new ObjectID();
+    var projectIdId;
+    idGenerator.getId(NUMBER_COUNT_COLLECTION_NAME, 'projectId').then(
+        function(item) {
+            project.projectId = item.value.seq;
+            projectIdId = item.value.seq;
+            console.log("AAAAA " + item.value.seq)
+        });
+    console.log("ProjectIDID : " + projectIdId)    
+    project._id = new ObjectID();        
     project.name = req.body.projectname;
     project.site = req.body.projectsite;
     project.date = req.body.projectdate;
@@ -139,7 +139,6 @@ function specialCharRemove(selector) {
 }
 
 function getNextSequence(name) {
-    var updatedProjectId;
     MongoClient.connect(url, function(err, db) {
         if (err) 
             console.log("error occured at getNextSequenc : " + err);{
