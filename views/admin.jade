@@ -11,6 +11,7 @@ block content
 						table.table.table-striped
 							thead
 								tr
+									th id
 									th name		
 									th date
 									th site
@@ -20,6 +21,8 @@ block content
 								each project in projects
 									tr
 										td
+											p #{project.projectId}
+										td
 											p #{project.name}
 										td
 											p #{project.date}
@@ -28,8 +31,8 @@ block content
 										td
 											p #{project.description}
 										td
-											button.btn.btn-primary.getDetail(role="button" data-project="#{project.name}") 상세
-											button.btn.btn-danger.deleteDetail(role="button" data-project="#{project.name}") 삭제
+											button.btn.btn-primary.getDetail(role="button" data-project="#{project.projectId}") 상세
+											button.btn.btn-danger.deleteDetail(role="button" data-project="#{project.projectId}") 삭제
 
 
 

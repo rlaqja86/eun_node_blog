@@ -33,7 +33,6 @@ var myDropzone = new Dropzone('#myDrop', {
             image.name = $(`#${selector}_name`).val();
             image.description = $(`textarea#${selector}_description`).val();
             image.isMain =  $(`#${selector}_mainimage`).is(':checked');
-            console.log(image)
             formData.append(`images`, JSON.stringify(image));     
             
             formData.set("fileNameSelector", selector);
