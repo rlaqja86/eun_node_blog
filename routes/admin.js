@@ -64,8 +64,6 @@ router.get('/detail/:projectId', function(req, res, next) {
         var query = `{"projectId":${projectId}}`;
         db.collection(PROJECT_COLLECTION_NAME).findOne(JSON.parse(query), function(err, document) {
             if (err) throw err;
-                console.log(query)
-                console.log(document)
                 res.status(200).render('admin_detail', { document: document })
              });
         });    
@@ -76,7 +74,6 @@ router.get('/delete/:projectId', function(req, res, next) {
         if (err) throw err;
         var projectId = req.params.projectId;
         var query = `{"projectId":${projectId}}`;
-        console.log(query)
         db.collection(PROJECT_COLLECTION_NAME).remove(JSON.parse(query), function(err, document) {
             if (err) throw err;
                 res.redirect('/admin')
