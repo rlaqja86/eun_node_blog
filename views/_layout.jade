@@ -8,8 +8,6 @@ append head
   meta(property="og:image" content="http://45.76.55.231:3000/images/thumbnail.jpg")
   meta(property="og:description" content="전시회 아카이브")
 
-  
-
 append scripts
   //- Global Site Tag (gtag.js) - Google Analytics
   script(async src="https://www.googletagmanager.com/gtag/js?id=UA-106543522-1")
@@ -17,7 +15,7 @@ append scripts
 
   script(src="https://use.fontawesome.com/2e9e0ef954.js")
   //- script(src="http://code.jquery.com/jquery-1.10.2.min.js")
-    
+
 append styles
   link(href="/stylesheets/style.css" rel="stylesheet" )
   link(href='/bootstrap/css/dashboard.css', rel='stylesheet')
@@ -28,11 +26,12 @@ block body
       a#title(href="/") 
         h1 Hellomate 
         h6.center Welcome to Eun-hye's site
-      a#link(href="/hi") 안녕출판사
+      a#link(href="/book") 안녕출판사
       a#link(href="/about") about
       a#link(href="/admin") admin
       a#link(href="/resetDB") DB전체삭제
       a#link(href="/sampleDB") DB샘플추가
+      a#link(href="/main") 레이아웃테스트
     div#bodyItem
       block content
     footer

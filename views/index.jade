@@ -1,7 +1,11 @@
 extends _layout
 append scripts
-  script(src="/js/project_hover.js")
-  script(src="/js/project_paginate.js")
+  script(type="text/javascript" src="/js/wookmark.js")
+  script(src="/js/projectLayout.js")
+  script(src="/js/projectHover.js")
+  script(src="/js/projectPaginate.js")
+append styles
+  link(href="/stylesheets/wookmark.css" rel="stylesheet" )
 block content
   div#projectPreview
     img(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")

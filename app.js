@@ -9,8 +9,8 @@ var index = require('./routes/index');
 var main = require('./routes/main');
 var admin = require('./routes/admin');
 var project = require('./routes/project')
-var about = require('./routes/about')
-var hi = require('./routes/hi')
+var about = require('./routes/sub_about')
+var book = require('./routes/sub_book')
 
 var app = express();
 
@@ -30,17 +30,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 //directory path.
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/scripts', express.static(path.join(__dirname, 'node_modules/')));
-app.use('/bootstrap/', express.static(path.join(__dirname, 'node_modules/jade-bootstrap')))
-app.use('/js', express.static(path.join(__dirname, 'script')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/jade-bootstrap')))
+app.use('/js', express.static(path.join(__dirname, 'js')));
 app.locals.pretty = true;
 
 app.use('/', index);
-app.use('/main', main);;
+// app.use('/main', main);
 app.use('/admin', admin);
 app.use('/project', project);
 app.use('/about', about);
-app.use('/hi', hi);
+app.use('/book', book);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

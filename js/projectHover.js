@@ -7,7 +7,7 @@ $(document).ready(function() {
     var $image = $('#projectPreview>img');
     var $caption = $('#projectPreview>a>.caption');
 
-    $(document).on('mouseover', trigger, function() {
+    $(document).on('mouseenter', trigger, function() {
         var image = $(this).data('image'),
             name = $(this).data('name'),
             description = $(this).data('description'),
@@ -17,8 +17,22 @@ $(document).ready(function() {
         $caption.html(`${name}<br>${date}`);
     });
 
-    $(document).on('mouseout', trigger, function() {
+    $(document).on('mouseleave', trigger, function() {
         $image.attr('src', '/uploads/' + latestImage);
         $caption.html(`${latestName}<br>${latestDate}`);
     });
+    // $(document).on('mouseover', trigger, function() {
+    //     var image = $(this).data('image'),
+    //         name = $(this).data('name'),
+    //         description = $(this).data('description'),
+    //         date = $(this).data('date');
+
+    //     $image.attr('src', '/uploads/' + image);
+    //     $caption.html(`${name}<br>${date}`);
+    // });
+
+    // $(document).on('mouseout', trigger, function() {
+    //     $image.attr('src', '/uploads/' + latestImage);
+    //     $caption.html(`${latestName}<br>${latestDate}`);
+    // });
 });

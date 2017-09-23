@@ -48,6 +48,34 @@ router.get('/', function(req, res, next) {
     }
 });
 
+
+// 테스트
+router.get('/main', function(req, res, next) {
+    try {
+        MongoClient.connect(DB_URL, function(err, db) {
+            db.collection(PROJECT_COLLECTION_NAME).count(function(err, totalProjectNum) {
+                totalPageNum = Math.ceil(totalProjectNum / PROJECT_PART);
+                db.close();
+                var result = EMPTY_PROJECT;
+                request('http://localhost:3000/page/1', function(error, response, data) {
+                    if (totalProjectNum > 0 && !error && response.statusCode === 200) {
+                        result = JSON.parse(data);
+                    } else {
+                        console.log('error:', error);
+                        console.log('statusCode:', response && response.statusCode);
+                    }
+                    res.render('main', { title: "hellomate", projects: result, totalPageNum: totalPageNum });
+                });
+            });
+        });
+    } catch (ex) {
+        console.log(ex);
+    }
+});
+// 테스트 종료
+
+
+
 router.get('/resetDB', function(req, res, next) {
     try {
         MongoClient.connect(DB_URL, function(err, db) {
