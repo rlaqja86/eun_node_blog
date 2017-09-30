@@ -28,7 +28,8 @@ $(document).ready(function() {
 
     function getPenPath() {
         if (this.loadCount < maxPage) {
-            return 'http://localhost:3000/getProjectList/' + (this.loadCount + 2);
+            console.log(this.loadCount);
+            return 'http://localhost:3000/getProjectList/' + (this.loadCount + 1);
         }
     }
 
