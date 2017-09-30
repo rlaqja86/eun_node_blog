@@ -1,13 +1,14 @@
 $(document).ready(function() {
-    var trigger = '#projects>#project>a>.caption';
-    var latestImage = $("#projects").data('latest_image');
-    var latestName = $("#projects").data('latest_name');
-    var latestDescription = $("#projects").data('latest_description');
-    var latestDate = $("#projects").data('latest_date');
+    var inTrigger = '#item>a>.caption';
+    var outTrigger = '#box';
+    var latestImage = $("#box").data('latest_image');
+    var latestName = $("#box").data('latest_name');
+    var latestDescription = $("#box").data('latest_description');
+    var latestDate = $("#box").data('latest_date');
     var $image = $('#projectPreview>img');
     var $caption = $('#projectPreview>a>.caption');
 
-    $(document).on('mouseenter', trigger, function() {
+    $(document).on('mouseenter', inTrigger, function() {
         var image = $(this).data('image'),
             name = $(this).data('name'),
             description = $(this).data('description'),
@@ -17,7 +18,7 @@ $(document).ready(function() {
         $caption.html(`${name}<br>${date}`);
     });
 
-    $(document).on('mouseleave', trigger, function() {
+    $(document).on('mouseleave', outTrigger, function() {
         $image.attr('src', '/uploads/' + latestImage);
         $caption.html(`${latestName}<br>${latestDate}`);
     });

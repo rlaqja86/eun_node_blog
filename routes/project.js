@@ -40,7 +40,7 @@ router.get('/:projectName', function(req, res, next) {
                 console.log(result);
 
                 if (result.length != 0) {
-                    res.render('project', { project: result[0] });
+                    res.render('project_detail', { project: result[0] });
                 } else {
                     res.redirect('/');
                 }

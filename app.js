@@ -6,11 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var main = require('./routes/main');
 var admin = require('./routes/admin');
 var project = require('./routes/project')
-var about = require('./routes/sub_about')
-var book = require('./routes/sub_book')
+var about = require('./routes/subAbout')
+var book = require('./routes/subBook')
 
 var app = express();
 
@@ -25,18 +24,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 //directory path.
-
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/jade-bootstrap')))
-app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/js', express.static(path.join(__dirname, 'js'))); // 나중에 js폴더를 public폴더 안으로 이동한 후 삭제
 app.locals.pretty = true;
 
 app.use('/', index);
-// app.use('/main', main);
 app.use('/admin', admin);
 app.use('/project', project);
 app.use('/about', about);

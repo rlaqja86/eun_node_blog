@@ -7,7 +7,7 @@ var router = express.Router();
 var DB_CONSTANT = require(path.join(__dirname, '../bin/domain/DB_CONSTANT'));
 var DB_URL = DB_CONSTANT.url;
 var PROJECT_COLLECTION_NAME = DB_CONSTANT.mainCollection;
-var PROJECT_PART = 6; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
+var PROJECT_PART = 10; // 한페이지에 보여줄 프로젝트수, 관리자가 정한다
 var totalPageNum = 1;
 
 var EMPTY_PROJECT = [{
@@ -48,33 +48,19 @@ router.get('/', function(req, res, next) {
     }
 });
 
-
-// 테스트
-router.get('/main', function(req, res, next) {
-    try {
-        MongoClient.connect(DB_URL, function(err, db) {
-            db.collection(PROJECT_COLLECTION_NAME).count(function(err, totalProjectNum) {
-                totalPageNum = Math.ceil(totalProjectNum / PROJECT_PART);
-                db.close();
-                var result = EMPTY_PROJECT;
-                request('http://localhost:3000/page/1', function(error, response, data) {
-                    if (totalProjectNum > 0 && !error && response.statusCode === 200) {
-                        result = JSON.parse(data);
-                    } else {
-                        console.log('error:', error);
-                        console.log('statusCode:', response && response.statusCode);
-                    }
-                    res.render('main', { title: "hellomate", projects: result, totalPageNum: totalPageNum });
-                });
-            });
-        });
-    } catch (ex) {
-        console.log(ex);
-    }
+router.get('/getProjectList/:page', function(req, res, next) {
+    var page = req.params.page;
+    request('http://localhost:3000/page/' + page, function(error, response, data) {
+        if (!error && response.statusCode === 200) {
+            result = JSON.parse(data);
+        } else {
+            console.log('error:', error);
+            console.log('statusCode:', response && response.statusCode);
+            result = '';
+        }
+        res.render('project_list', { projects: result, totalPageNum: totalPageNum });
+    });
 });
-// 테스트 종료
-
-
 
 router.get('/resetDB', function(req, res, next) {
     try {

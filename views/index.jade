@@ -1,25 +1,16 @@
 extends _layout
 append scripts
-  script(type="text/javascript" src="/js/wookmark.js")
-  script(src="/js/projectLayout.js")
+  script(type="text/javascript" src="/node_modules/masonry-layout/dist/masonry.pkgd.min.js")
+  script(type="text/javascript" src="/node_modules/infinite-scroll/dist/infinite-scroll.pkgd.min.js")
+  script(src="/js/projectPreview.js")
+  script(src="/js/projectListLayout.js")
   script(src="/js/projectHover.js")
-  script(src="/js/projectPaginate.js")
 append styles
-  link(href="/stylesheets/wookmark.css" rel="stylesheet" )
+  link(href="/stylesheets/projectListLayout.css" rel="stylesheet" )
 block content
-  div#projectPreview
-    img(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")
+  div#projectPreview.parent
+    img.child(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")
     a(href="/project/#{projects[0].name}")
       div.caption #{projects[0].name}<br>#{projects[0].date}
   div#projectsWrap
-    div#projects(data-latest_image="#{projects[0].images.image}" data-latest_name="#{projects[0].name}" data-latest_description="#{projects[0].description}" data-latest_date="#{projects[0].date}")
-      each item in projects
-        div#project
-          img(src="/uploads/#{item.images.image}" alt="#{item.images.name}")
-          a(href="/project/#{item.name}")
-            div.caption(data-image="#{item.images.image}" data-name="#{item.name}" data-description="#{item.description}" data-date="#{item.date}")= item.name
-    - if(totalPageNum > 1){
-    div#more(data-next="2" data-max="#{totalPageNum}") more..
-    - }
-    
-        
+    include project_list
