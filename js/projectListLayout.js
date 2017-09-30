@@ -27,9 +27,10 @@ $(document).ready(function() {
     var maxPage = $('#box').data('max');
 
     function getPenPath() {
-        if (this.loadCount + 1 < maxPage) {
-            console.log(this.loadCount);
-            return 'http://localhost:3000/getProjectList/' + (this.loadCount + 2);
+        if (this.pageIndex < maxPage) {
+            // console.log(this.loadCount);
+            console.log(this.pageIndex);
+            return 'http://localhost:3000/getProjectList/' + (this.pageIndex + 1);
         }
     }
 
