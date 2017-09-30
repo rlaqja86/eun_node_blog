@@ -13,6 +13,12 @@ var book = require('./routes/subBook')
 
 var app = express();
 
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -36,12 +42,6 @@ app.use('/admin', admin);
 app.use('/project', project);
 app.use('/about', about);
 app.use('/book', book);
-
-app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
