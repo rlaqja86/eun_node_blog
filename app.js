@@ -14,9 +14,9 @@ var book = require('./routes/subBook')
 
 var app = express();
 
-app.enable('etag') // use strong etags
-app.set('etag', 'strong') // same
-app.set('etag', 'weak') // weak etags
+// app.enable('etag') // use strong etags
+// app.set('etag', 'strong') // same
+// app.set('etag', 'weak') // weak etags
 
 
 app.all('/*', function(req, res, next) {

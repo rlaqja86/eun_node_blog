@@ -49,6 +49,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/getProjectList/:page', function(req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+
     var page = req.params.page;
     request('http://localhost:3000/page/' + page, function(error, response, data) {
         if (!error && response.statusCode === 200) {
