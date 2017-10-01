@@ -17,6 +17,10 @@ var app = express();
 // app.enable('etag') // use strong etags
 // app.set('etag', 'strong') // same
 // app.set('etag', 'weak') // weak etags
+app.use(function(req, res, next) {
+    req.headers['if-none-match'] = 'no-match-for-this';
+    next();
+});
 
 
 app.all('/*', function(req, res, next) {
@@ -24,7 +28,7 @@ app.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
 });
-app.disable('etag');
+// app.disable('etag');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
