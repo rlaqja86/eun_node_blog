@@ -42,7 +42,8 @@ $(document).ready(function() {
         status: '.page-load-status',
         scrollThresold: 100,
         history: false,
-        elementScroll: '#projectsWrap'
+        elementScroll: '#projectsWrap',
+        debug: true
     });
 
 
