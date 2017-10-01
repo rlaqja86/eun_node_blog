@@ -208,6 +208,9 @@ router.get('/sampleDB', function(req, res, next) {
 });
 
 router.get('/page/:page', function(req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
     var page = req.params.page;
 
     if (page <= totalPageNum && page > 0) {
