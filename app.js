@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var etag = require('etag');
 
 var index = require('./routes/index');
 var admin = require('./routes/admin');
@@ -13,11 +14,17 @@ var book = require('./routes/subBook')
 
 var app = express();
 
+app.enable('etag') // use strong etags
+app.set('etag', 'strong') // same
+app.set('etag', 'weak') // weak etags
+
+
 app.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
 });
+app.disable('etag');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
