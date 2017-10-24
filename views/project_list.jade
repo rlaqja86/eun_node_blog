@@ -8,18 +8,7 @@ div#box.grid.are-images-unloaded(data-max="#{totalPageNum}" data-latest_image="#
       a(href="/project/#{item.name}")
         div.caption(data-image="#{item.images.image}" data-name="#{item.name}" data-description="#{item.description}" data-date="#{item.date}")= item.name
 div.page-load-status
-  p.infinite-scroll-last 프로젝트 끝
-  p.infinite-scroll-error 에러에러 ;(
-  div.loader-ellips.infinite-scroll-request
-    div.loader-wheel
-      i
-        i
-          i
-            i
-              i
-                i
-                  i
-                    i
-                      i
-                        i
+  p.infinite-scroll-last 스크롤 끝
+  p.infinite-scroll-error 스크롤 에러
+  p.infinite-scroll-request loading...
 -}else{}

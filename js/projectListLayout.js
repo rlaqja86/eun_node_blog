@@ -27,10 +27,17 @@ $(document).ready(function() {
     var maxPage = $('#box').data('max');
 
     function getPenPath() {
-        if (this.pageIndex < maxPage) {
+        console.log("getPenPath call");
+        console.log('maxPage : ' + maxPage);
+        console.log('thisPageIndex : ' + this.pageIndex);
+        if (this.pageIndex <= maxPage) {
             // console.log(this.loadCount);
-            console.log(this.pageIndex);
-            return 'http://localhost:3000/getProjectList/' + (this.pageIndex + 1);
+            console.log('if 실행');
+            return '/getProjectList/' + (this.pageIndex + 1);
+        } else {
+            console.log('elseIf 실행');
+            // return '/getProjectList/1';
+            // return '';
         }
     }
 
@@ -43,7 +50,8 @@ $(document).ready(function() {
         scrollThresold: 100,
         history: false,
         elementScroll: '#projectsWrap',
-        debug: true
+        // responseType: 'text',
+        // debug: true,
     });
 
 

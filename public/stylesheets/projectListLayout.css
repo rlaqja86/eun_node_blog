@@ -51,7 +51,7 @@
 
 /* loader ellips in separate pen CSS */
 
-.loader-wheel {
+div.loader-wheel#wheel {
     font-size: 64px;
     /* change size here */
     position: relative;
@@ -63,7 +63,7 @@
     animation: loader-wheel-rotate 0.5s steps(12) infinite;
 }
 
-.loader-wheel i {
+div.loader-wheel#wheel i {
     display: block;
     position: absolute;
     height: 0.3em;
@@ -83,4 +83,68 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+div.loader-ellips {
+    font-size: 20px;
+    /* change size here */
+    position: relative;
+    width: 4em;
+    height: 1em;
+    margin: 10px auto;
+}
+
+div.loader-ellips>span.loader-ellips__dot {
+    display: block;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background: #555;
+    /* change color here */
+    position: absolute;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+div.loader-ellips>span.loader-ellips__dot:nth-child(1),
+div.loader-ellips>span.loader-ellips__dot:nth-child(2) {
+    left: 0;
+}
+
+div.loader-ellips>span.loader-ellips__dot:nth-child(3) {
+    left: 1.5em;
+}
+
+div.loader-ellips>span.loader-ellips__dot:nth-child(4) {
+    left: 3em;
+}
+
+@keyframes reveal {
+    from {
+        transform: scale(0.001);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes slide {
+    to {
+        transform: translateX(1.5em)
+    }
+}
+
+div.loader-ellips>span.loader-ellips__dot:nth-child(1) {
+    animation-name: reveal;
+}
+
+div.loader-ellips>span.loader-ellips__dot:nth-child(2),
+div.loader-ellips>span.loader-ellips__dot:nth-child(3) {
+    animation-name: slide;
+}
+
+div.loader-ellips>span.loader-ellips__dot:nth-child(4) {
+    animation-name: reveal;
+    animation-direction: reverse;
 }

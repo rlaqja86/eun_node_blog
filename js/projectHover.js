@@ -22,6 +22,7 @@ $(document).ready(function() {
         $image.attr('src', '/uploads/' + latestImage);
         $caption.html(`${latestName}<br>${latestDate}`);
     });
+
     // $(document).on('mouseover', trigger, function() {
     //     var image = $(this).data('image'),
     //         name = $(this).data('name'),
