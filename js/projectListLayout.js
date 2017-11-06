@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     // load more
-    var maxPage = $('#box').data('max');
+    var maxPage = $('#projectListBox').data('max');
 
     function getPenPath() {
         console.log("getPenPath call");

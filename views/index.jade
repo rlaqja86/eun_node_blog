@@ -10,9 +10,10 @@ append scripts
 append styles
   link(href="/stylesheets/projectListLayout.css" rel="stylesheet" )
 block content
-  div#projectPreview.parent
-    img.child(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")
+  div#projectPreview
+    div#projectPreviewImageBox
+      img#projectPreviewImage(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")
     a(href="/project/#{projects[0].name}")
-      div.caption #{projects[0].name}<br>#{projects[0].date}
+      div#projectPreviewCaption.caption #{projects[0].name}<br>#{projects[0].date}
   div#projectsWrap
     include project_list

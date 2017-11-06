@@ -1,12 +1,13 @@
 -if(projects != '' ){
-div#box.grid.are-images-unloaded(data-max="#{totalPageNum}" data-latest_image="#{projects[0].images.image}" data-latest_name="#{projects[0].name}" data-latest_description="#{projects[0].description}" data-latest_date="#{projects[0].date}")
+div#projectListBox.grid.are-images-unloaded(data-max="#{totalPageNum}" data-latest_image="#{projects[0].images.image}" data-latest_name="#{projects[0].name}" data-latest_description="#{projects[0].description}" data-latest_date="#{projects[0].date}")
   div.grid-col-sizer
   div.grid-gutter-sizer
   each item in projects
-    div#item.grid-item
+    div#projectListItem.grid-item
       img(src="/uploads/#{item.images.image}" alt="#{item.images.name}")
       a(href="/project/#{item.name}")
-        div.caption(data-image="#{item.images.image}" data-name="#{item.name}" data-description="#{item.description}" data-date="#{item.date}")= item.name
+        div#projectListItemCaption.caption(data-image="#{item.images.image}" data-name="#{item.name}" data-description="#{item.description}" data-date="#{item.date}")
+          div= item.name
 div.page-load-status
   p.infinite-scroll-last 스크롤 끝
   p.infinite-scroll-error 스크롤 에러

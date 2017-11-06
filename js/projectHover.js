@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    var inTrigger = '#item>a>.caption';
-    var outTrigger = '#box';
-    var latestImage = $("#box").data('latest_image');
-    var latestName = $("#box").data('latest_name');
-    var latestDescription = $("#box").data('latest_description');
-    var latestDate = $("#box").data('latest_date');
-    var $image = $('#projectPreview>img');
-    var $caption = $('#projectPreview>a>.caption');
+    var inTrigger = '#projectListItemCaption';
+    var outTrigger = '#projectListBox';
+    var latestImage = $("#projectListBox").data('latest_image');
+    var latestName = $("#projectListBox").data('latest_name');
+    var latestDescription = $("#projectListBox").data('latest_description');
+    var latestDate = $("#projectListBox").data('latest_date');
+    var $image = $('#projectPreviewImage');
+    var $caption = $('#projectPreviewCaption');
 
     $(document).on('mouseenter', inTrigger, function() {
         var image = $(this).data('image'),

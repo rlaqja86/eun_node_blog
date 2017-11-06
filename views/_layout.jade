@@ -24,13 +24,12 @@ block body
   div#bodyWrap
     header
       a#title(href="/") 
-        h1 Hellomate 
-        h6.center Welcome to Eun-hye's site
-      a#link(href="/book") 안녕출판사
-      a#link(href="/about") about
-      a#link(href="/admin") admin
-      a#link(href="/resetDB") DB전체삭제
-      a#link(href="/sampleDB") DB샘플추가
+        h3 Hellomate 
+      a.link#bookLink(href="/book") 안녕출판사
+      a.link#aboutLink(href="/about") about
+      a.link(href="/admin") admin
+      a.link(href="/resetDB") DB전체삭제
+      a.link(href="/sampleDB") DB샘플추가
     div#bodyItem
       block content
     footer

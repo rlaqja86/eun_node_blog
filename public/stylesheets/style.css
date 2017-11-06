@@ -27,14 +27,18 @@ h3 {
 
 h4 {
     font-size: 22px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 h5 {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 h6 {
     font-size: 13px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .center {
@@ -49,12 +53,12 @@ h6 {
     text-align: right;
 }
 
-.parent {
+.centerParent {
     position: relative;
     overflow: hidden;
 }
 
-.child {
+.centerChild {
     position: absolute;
     top: -9999px;
     bottom: -9999px;
@@ -97,23 +101,33 @@ header {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 #title {
     float: left;
 }
 
-#title>h1,
-#title>h6 {
+#title * {
     line-height: 100%;
 }
 
-#link {
+.link {
     float: right;
-    border: 1px solid darkcyan;
+    color: gray;
     margin: 1px;
     padding: 5px;
+    /* transition : property duration delay type  */
+    -webkit-transition: all 0.3s 0s ease;
+    -moz-transition: all 0.3s 0s ease;
+    -ms-transition: all 0.3s 0s ease;
+    -o-transition: all 0.3s 0s ease;
+    transition: all 0.3s 0s ease;
+}
+
+.link:hover {
+    color: white;
+    background-color: gray;
 }
 
 #bodyItem {
@@ -129,6 +143,16 @@ header {
     float: left;
     clear: both;
     width: 700px;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+#projectPreviewImageBox {
+    float: left;
+    clear: both;
+    width: inherit;
     height: 500px;
     position: relative;
     overflow: hidden;
@@ -136,15 +160,24 @@ header {
     background-color: lightgray;
 }
 
+#projectPreviewImage {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
 #projectsWrap {
     float: right;
     width: 380px;
-    height: 500px;
+    height: 600px;
     overflow-y: scroll;
     padding: 0px 10px 50px 10px;
 }
 
-#box {
+#projectListBox {
     float: right;
     width: 100%;
 }
@@ -163,12 +196,12 @@ footer>div>p>a {
 a:after,
 a:link,
 a:active {
-    color: #0080c0;
+    color: #2f2f2f;
 }
 
 a:visited,
 a:hover {
-    color: darkcyan;
+    color: #2f2f2f;
 }
 
 a#facebook:link,
@@ -199,17 +232,29 @@ a#instagram:hover {
     color: #0080c0;
 }
 
-div#slideWrap {
+div#projectDetailOuter {
     width: 100%;
     margin: 0 auto;
 }
 
-.fotorama__caption {
+div#slideWrap {
+    width: 75%;
+    float: left;
+}
+
+div#descriptionBox {
+    width: 25%;
+    float: left;
+    padding-left: 10px;
+}
+
+div.fotorama__caption {
     text-align: right;
 }
 
-.fotorama__caption__wrap {
+div.fotorama__caption__wrap {
     text-align: right;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .about,
@@ -263,32 +308,48 @@ img.about {
 /* 캡션 속성 */
 
 .caption {
+    word-break: break-all;
     text-align: left;
     z-index: 1000;
     padding: 10px;
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.30);
     /* transition : property duration delay type  */
     -webkit-transition: all 0.3s 0s ease;
     -moz-transition: all 0.3s 0s ease;
     -ms-transition: all 0.3s 0s ease;
     -o-transition: all 0.3s 0s ease;
     transition: all 0.3s 0s ease;
-    /* background: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
-    background: -o-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
-    background: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0)); */
 }
 
-#projectPreview .caption {
+#projectPreviewCaption {
+    background-color: rgba(0, 0, 0, 0.70);
+    color: #ffffff;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 15%;
+    height: 100px;
 }
 
-#projectsWrap .caption {
+#projectListItemCaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #ffffff00;
+    font-weight: bold;
+    display: table;
+}
+
+#projectPreviewCaption:hover,
+#projectListItemCaption:hover {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.70);
+}
+
+#projectListItem>a {
     position: absolute;
     top: 0;
     left: 0;
@@ -296,23 +357,23 @@ img.about {
     height: 100%;
 }
 
-#projectsWrap .cover {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 100%;
-    /* 패딩을 프로젝트리스트의 이미지와 같게 맞춰줘야함 */
-    padding-bottom: 10px;
+#projectListItemCaption>div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: rgba(255, 255, 255, 0);
+    font-size: 16px;
+    word-break: break-all;
+    /* transition : property duration delay type  */
+    -webkit-transition: all 0.3s 0s ease;
+    -moz-transition: all 0.3s 0s ease;
+    -ms-transition: all 0.3s 0s ease;
+    -o-transition: all 0.3s 0s ease;
+    transition: all 0.3s 0s ease;
 }
 
-#projectPreview .caption:hover,
-#projectsWrap .caption:hover {
-    color: #FFCA28;
-    font-size: 16px;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.70);
+#projectListItemCaption>div:hover {
+    color: rgb(255, 255, 255);
 }
 
 

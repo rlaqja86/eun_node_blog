@@ -7,11 +7,13 @@ append styles
     link(rel="stylesheet" href="/node_modules/fotorama/fotorama.css")
 
 block content
-    h3 #{project.name}
-    h6 설명 : #{project.description}
-    h6 날짜 : #{project.date}
-    h6 장소 : #{project.site}
-    div#slideWrap
-        div#slide.fotorama(data-allowfullscreen="true" data-fit="cover" data-keyboard="true" data-nav="thumbs" data-width="100%" data-ratio="16/9" data-max-width="100%")
-            each item in project.images
-                img(src="/uploads/#{item.image}" data-caption="#{item.name}<br>#{item.description}" alt="#{item.name}")
+    div#projectDetailOuter
+        div#slideWrap
+            div#slide.fotorama(data-allowfullscreen="true" data-fit="contain" data-keyboard="true" data-nav="thumbs" data-width="100%" data-ratio="16/9" data-max-width="100%")
+                each item in project.images
+                    img(src="/uploads/#{item.image}" data-caption="#{item.name}<br>#{item.description}" alt="#{item.name}")
+        div#descriptionBox
+            h4 #{project.name}
+            h6 설명 : #{project.description}
+            h6 날짜 : #{project.date}
+            h6 장소 : #{project.site}

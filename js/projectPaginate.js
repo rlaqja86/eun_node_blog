@@ -1,3 +1,5 @@
+// 삭제 예정
+
 $(document).ready(function() {
     var trigger = '#more';
     $(document).on('click', trigger, function() {

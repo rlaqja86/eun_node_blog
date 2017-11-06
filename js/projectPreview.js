@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    var trigger = '#projectPreview>img';
-    var frameWidth = $('#projectPreview').width();
-    var frameHeight = $('#projectPreview').height();
+    var trigger = '#projectPreviewImage';
+    var frameWidth = $('#projectPreviewImageBox').width();
+    var frameHeight = $('#projectPreviewImageBox').height();
     var frameRatio = frameWidth / frameHeight;
 
-    $(trigger).bind('load', imageResizeSmall);
-
+    $(trigger).bind('load', imageResizeLarge);
+    //#region abc
     function imageResizeSmall(e) {
         var originImageWidth = $(this).get(0).naturalWidth;
         var originImageHeight = $(this).get(0).naturalHeight;
@@ -20,6 +20,8 @@ $(document).ready(function() {
             // $(this).css({ 'padding-top': '0px' });
         }
     }
+
+    //#endregion abc
 
     function imageResizeLarge(e) {
         var originImageWidth = $(this).get(0).naturalWidth;
