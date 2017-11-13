@@ -311,7 +311,6 @@ img.about {
     word-break: break-all;
     text-align: left;
     z-index: 1000;
-    padding: 10px;
     /* transition : property duration delay type  */
     -webkit-transition: all 0.3s 0s ease;
     -moz-transition: all 0.3s 0s ease;
@@ -321,6 +320,7 @@ img.about {
 }
 
 #projectPreviewCaption {
+    padding: 10px;
     background-color: rgba(0, 0, 0, 0.70);
     color: #ffffff;
     position: absolute;
@@ -330,23 +330,29 @@ img.about {
     height: 100px;
 }
 
+#projectPreviewCaption:hover {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.70);
+}
+
 #projectListItemCaption {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    font-size: 16px;
     color: #ffffff00;
     font-weight: bold;
     display: table;
 }
 
-#projectPreviewCaption:hover,
 #projectListItemCaption:hover {
     color: #ffffff;
-    font-size: 16px;
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.70);
+    background: rgba(0, 0, 0, 0.50);
 }
 
 #projectListItem>a {

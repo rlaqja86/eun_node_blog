@@ -5,7 +5,7 @@ div#projectListBox.grid.are-images-unloaded(data-max="#{totalPageNum}" data-late
   each item in projects
     div#projectListItem.grid-item
       img(src="/uploads/#{item.images.image}" alt="#{item.images.name}")
-      a(href="/project/#{item.name}")
+      a(href="/project/#{item._id}")
         div#projectListItemCaption.caption(data-image="#{item.images.image}" data-name="#{item.name}" data-description="#{item.description}" data-date="#{item.date}")
           div= item.name
 div.page-load-status

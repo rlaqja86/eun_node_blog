@@ -88,13 +88,13 @@ router.get('/sampleDB', function(req, res, next) {
                     "site": "대한민국 서울",
                     "description": "샘플1",
                     "images": [{
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명123",
+                        "description": "작품설명123",
                         "image": "sample1.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명weq",
+                        "description": "작품설명qwe",
                         "image": "sample2.jpg",
                         "isMain": false
                     }]
@@ -104,13 +104,13 @@ router.get('/sampleDB', function(req, res, next) {
                     "site": "대한민국 서울",
                     "description": "샘플2",
                     "images": [{
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명112",
+                        "description": "작품설명111",
                         "image": "sample2.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명1212",
+                        "description": "작품설명12211",
                         "image": "sample3.jpg",
                         "isMain": false
                     }]
@@ -121,12 +121,12 @@ router.get('/sampleDB', function(req, res, next) {
                     "description": "샘플3",
                     "images": [{
                         "name": "작품명",
-                        "description": "작품설명",
+                        "description": "작품설명123123",
                         "image": "sample3.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명sfdg",
+                        "description": "작품설명32134",
                         "image": "sample4.jpg",
                         "isMain": false
                     }]
@@ -136,13 +136,13 @@ router.get('/sampleDB', function(req, res, next) {
                     "site": "대한민국 서울",
                     "description": "샘플3",
                     "images": [{
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명agrre",
+                        "description": "작품설명rve",
                         "image": "sample4.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명rvvv",
+                        "description": "작품설명vwwv",
                         "image": "sample5.jpg",
                         "isMain": false
                     }]
@@ -152,13 +152,13 @@ router.get('/sampleDB', function(req, res, next) {
                     "site": "대한민국 서울",
                     "description": "샘플5",
                     "images": [{
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명svasdv",
+                        "description": "작품설명sdvsv",
                         "image": "sample5.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명rtgrtgr",
+                        "description": "작품설명scccc",
                         "image": "sample6.jpg",
                         "isMain": false
                     }]
@@ -168,13 +168,13 @@ router.get('/sampleDB', function(req, res, next) {
                     "site": "대한민국 서울",
                     "description": "샘플6",
                     "images": [{
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명wfwf23",
+                        "description": "작품설명32f23f",
                         "image": "sample6.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명23232",
+                        "description": "작품설명23r32r",
                         "image": "sample7.jpg",
                         "isMain": false
                     }]
@@ -184,13 +184,13 @@ router.get('/sampleDB', function(req, res, next) {
                     "site": "대한민국 서울",
                     "description": "샘플7",
                     "images": [{
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명r23r23",
+                        "description": "작품설명r2r23",
                         "image": "sample7.jpg",
                         "isMain": true
                     }, {
-                        "name": "작품명",
-                        "description": "작품설명",
+                        "name": "작품명r2r3",
+                        "description": "작품설명2r323r",
                         "image": "sample1.jpg",
                         "isMain": false
                     }]

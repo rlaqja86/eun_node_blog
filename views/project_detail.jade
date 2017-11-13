@@ -1,7 +1,7 @@
 extends _layout
 
 append scripts
-    script(src="/node_modules/fotorama/fotorama.js")
+    script(src="/node_modules/fotorama/fotorama_edit.js")
 
 append styles
     link(rel="stylesheet" href="/node_modules/fotorama/fotorama.css")
@@ -17,3 +17,4 @@ block content
             h6 설명 : #{project.description}
             h6 날짜 : #{project.date}
             h6 장소 : #{project.site}
+            div#imageCaption 이미지설명
