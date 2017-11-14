@@ -13,7 +13,7 @@ block content
   div#projectPreview
     div#projectPreviewImageBox
       img#projectPreviewImage(src="/uploads/#{projects[0].images.image}", alt="#{projects[0].name}")
-    a(href="/project/#{projects[0].name}")
-      div#projectPreviewCaption.caption #{projects[0].name}<br>#{projects[0].date}
+      a(href="/project/#{projects[0]._id}")
+        div#projectPreviewCaption.caption #{projects[0].name}<br>#{projects[0].date}
   div#projectsWrap
     include project_list
